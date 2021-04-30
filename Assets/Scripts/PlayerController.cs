@@ -60,28 +60,26 @@ public class PlayerController : MonoBehaviour
 
     private void RotatePlayer(string direction, float value)
     {
+        var directionVector = new Vector3(0, 0, 0);
         if (direction.Equals(HORIZONTAL))
         {
             if (value == 1f)
             {
-                playerTransform.rotation = Quaternion.Euler(new Vector3(0, 270, 0));
+                directionVector.y = 270;
             }
             else
             {
-                playerTransform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                directionVector.y = 90;
             }
         }
         else
         {
             if (value == 1f)
             {
-                playerTransform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            }
-            else
-            {
-                playerTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                directionVector.y = 180;
             }
         }
+        playerTransform.rotation = Quaternion.Euler(directionVector);
      
     }
 }
