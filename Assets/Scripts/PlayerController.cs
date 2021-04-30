@@ -5,6 +5,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private Transform playerTransform;
+
+    private readonly string VERTICAL = "Vertical";
+    private readonly string HORIZONTAL = "Horizontal";
+    
     private Vector3 _startPos, _targetPos;
     private bool _isMoving;
     private Animator _anim;
@@ -32,35 +36,20 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             transform.position += (_targetPos - _startPos) * (moveSpeed * Time.deltaTime);
-            
         }
         else
         {
-            if (Math.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+            if (Math.Abs(Input.GetAxisRaw(VERTICAL)) == 1f)
             {
-                if (Input.GetAxisRaw("Vertical") == 1f)
-                {
-                    RotatePlayer(new Vector3(0, 180, 0));
-                }
-                else
-                {
-                    RotatePlayer(new Vector3(0, 0, 0));
-                }
+                RotatePlayer(VERTICAL, Input.GetAxisRaw(VERTICAL));
                 _startPos = transform.position;
-                _targetPos = _startPos + new Vector3(0, 0, Input.GetAxisRaw("Vertical"));
+                _targetPos = _startPos + new Vector3(0, 0, Input.GetAxisRaw(VERTICAL));
                 _isMoving = true;
                 _anim.SetTrigger(Move);
             }
-            else if (Math.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+            else if (Math.Abs(Input.GetAxisRaw(HORIZONTAL)) == 1f)
             {
-                if (Input.GetAxisRaw("Horizontal") == 1f)
-                {
-                    RotatePlayer(new Vector3(0, 270, 0));
-                }
-                else
-                {
-                    RotatePlayer(new Vector3(0, 90, 0));
-                }
+                RotatePlayer(HORIZONTAL, Input.GetAxisRaw(HORIZONTAL));
                 _startPos = transform.position;
                 _targetPos = _startPos + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
                 _isMoving = true;
@@ -69,8 +58,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void RotatePlayer(Vector3 direction)
+    private void RotatePlayer(string direction, float value)
     {
-        playerTransform.rotation = Quaternion.Euler(direction);
+        if (direction.Equals(HORIZONTAL))
+        {
+            if (value == 1f)
+            {
+                playerTransform.rotation = Quaternion.Euler(new Vector3(0, 270, 0));
+            }
+            else
+            {
+                playerTransform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+            }
+        }
+        else
+        {
+            if (value == 1f)
+            {
+                playerTransform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            }
+            else
+            {
+                playerTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
+        }
+     
     }
 }
