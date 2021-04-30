@@ -24,10 +24,7 @@ public class LevelGenerator : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown("w"))
-        {
-            GenerateTerrain();
-        }
+        
     }
 
     private void GenerateTerrain()
