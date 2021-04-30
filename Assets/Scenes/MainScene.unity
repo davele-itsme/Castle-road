@@ -521,5 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eff89ed0077e344993d1f10cdef2eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  movingTime: 0.25
+  timeToMove: 0.1
   playerTransform: {fileID: 1777668971}

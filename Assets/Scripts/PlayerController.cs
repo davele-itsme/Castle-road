@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float movingTime, timeToMove;
     [SerializeField] private Transform playerTransform;
 
     private readonly string VERTICAL = "Vertical";
@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private bool _isMoving;
     private Animator _anim;
     private static readonly int Move = Animator.StringToHash("Move");
+    private float _tInterpolate, _tMove;
 
     private void Awake()
     {
@@ -29,13 +30,19 @@ public class PlayerController : MonoBehaviour
         if (_isMoving)
         {
             //Snapping, player can react in the last 0.2f
-            if (Vector3.Distance(_startPos, transform.position) > 0.8f)
+            if (Vector3.Distance(_startPos, transform.position) >= 1f)
             {
+                _tMove += Time.deltaTime;
+                if (!(_tMove >= timeToMove)) return;
                 transform.position = _targetPos;
                 _isMoving = false;
+                _tInterpolate = 0;
+                _tMove = 0;
                 return;
             }
-            transform.position += (_targetPos - _startPos) * (moveSpeed * Time.deltaTime);
+            
+            _tInterpolate += Time.deltaTime / movingTime;
+            transform.position = Vector3.Lerp(_startPos, _targetPos, _tInterpolate);
         }
         else
         {
