@@ -13,10 +13,10 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Transform level;
 
     private readonly List<GameObject> _terrains = new List<GameObject>();
-    private Vector3 _currentPosition = new Vector3(0, 1, 0);
+    private Vector3 _currentPosition = new Vector3(0, 1, -3);
     private bool _generateSameTerrain;
     private int _lastTerrainType;
-    private int _terrainCounter = 6;
+    private int _terrainCounter = 8;
     
     private void Start()
     {
