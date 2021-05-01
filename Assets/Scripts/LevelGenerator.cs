@@ -22,7 +22,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void GenerateTerrain()
+    public void GenerateTerrain()
     {
         var type = 0;
         if (_terrainCounter == 0)

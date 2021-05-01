@@ -44,19 +44,25 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Math.Abs(Input.GetAxisRaw(VERTICAL)) == 1f)
+            var verValue = Input.GetAxisRaw(VERTICAL);
+            var horValue = Input.GetAxisRaw(HORIZONTAL);
+            if (Math.Abs(verValue) == 1f)
             {
-                RotatePlayer(VERTICAL, Input.GetAxisRaw(VERTICAL));
+                RotatePlayer(VERTICAL, verValue);
                 _startPos = transform.position;
-                _targetPos = _startPos + new Vector3(0, 0, Input.GetAxisRaw(VERTICAL));
+                _targetPos = _startPos + new Vector3(0, 0, verValue);
                 _isMoving = true;
                 _anim.SetTrigger(Move);
+                if (verValue == 1f)
+                {
+                    
+                }
             }
-            else if (Math.Abs(Input.GetAxisRaw(HORIZONTAL)) == 1f)
+            else if (Math.Abs(horValue) == 1f)
             {
-                RotatePlayer(HORIZONTAL, Input.GetAxisRaw(HORIZONTAL));
+                RotatePlayer(HORIZONTAL, horValue);
                 _startPos = transform.position;
-                _targetPos = _startPos + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+                _targetPos = _startPos + new Vector3(horValue, 0, 0);
                 _isMoving = true;
                 _anim.SetTrigger(Move);
             }
