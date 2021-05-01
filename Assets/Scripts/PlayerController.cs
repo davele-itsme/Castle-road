@@ -21,15 +21,13 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-       MovePlayer();
-       
+        MovePlayer();
     }
 
     private void MovePlayer()
     {
         if (_isMoving)
         {
-            //Snapping, player can react in the last 0.2f
             if (Vector3.Distance(_startPos, transform.position) >= 1f)
             {
                 _tMove += Time.deltaTime;
@@ -87,6 +85,5 @@ public class PlayerController : MonoBehaviour
             }
         }
         playerTransform.rotation = Quaternion.Euler(directionVector);
-     
     }
 }

@@ -21,11 +21,6 @@ public class LevelGenerator : MonoBehaviour
             GenerateTerrain();    
         }
     }
-    
-    private void Update()
-    {
-        
-    }
 
     private void GenerateTerrain()
     {
