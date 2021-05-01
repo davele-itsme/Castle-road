@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private float tValue;
+    private Vector3 _shouldFollow;
+
     private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, playerTransform.position + offset, tValue);
+        _shouldFollow = Vector3.Lerp(transform.position, playerTransform.position, Time.deltaTime);
+        transform.position = new Vector3(_shouldFollow.x, 5, _shouldFollow.z);
     }
 }
