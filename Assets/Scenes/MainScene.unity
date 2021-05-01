@@ -358,11 +358,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e109eb7e3fd2041a2cda397b60051a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrains:
+  terrainTypes:
   - {fileID: 694363440507247044, guid: d6d0337bd62d7804494e45407292c2c1, type: 3}
   - {fileID: 5113632004828948762, guid: 7bf971c106d22324f99aa964733db8ba, type: 3}
   - {fileID: 1254042729628033532, guid: 2459923487d6d9f41ab0377c197d1779, type: 3}
+  playerTransform: {fileID: 2014476205}
   maxSpawn: 30
+  spawnDistance: 20
   level: {fileID: 1088281516}
 --- !u!4 &1440353948
 Transform:
@@ -372,7 +374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440353946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.532068, y: 6.8023205, z: -8.208671}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -521,6 +523,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eff89ed0077e344993d1f10cdef2eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelGenerator: {fileID: 1440353947}
   movingTime: 0.25
   timeToMove: 0.1
   playerTransform: {fileID: 1777668971}
+--- !u!4 &2014476205 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4142490498178998, guid: 4ed1e0628e5ec2a409b6e3e2eaa84a34, type: 3}
+  m_PrefabInstance: {fileID: 1765942253}
+  m_PrefabAsset: {fileID: 0}

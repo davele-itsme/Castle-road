@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private float movingTime, timeToMove;
     [SerializeField] private Transform playerTransform;
 
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
                 _anim.SetTrigger(Move);
                 if (verValue == 1f)
                 {
-                    
+                    _levelGenerator.GenerateTerrain(false);
                 }
             }
             else if (Math.Abs(horValue) == 1f)

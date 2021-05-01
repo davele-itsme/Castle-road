@@ -1,30 +1,46 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> terrains = new List<GameObject>();
+    [SerializeField] private List<GameObject> terrainTypes = new List<GameObject>();
+    [SerializeField] private Transform playerTransform;
     [SerializeField] private int maxSpawn;
+    [SerializeField] private float spawnDistance;
     [SerializeField] private Transform level;
 
     private readonly List<GameObject> _terrains = new List<GameObject>();
     private Vector3 _currentPosition = new Vector3(0, 1, 0);
     private bool _generateSameTerrain;
-    private int _lastTerrainType = 0;
+    private int _lastTerrainType;
     private int _terrainCounter = 6;
     
     private void Start()
     {
         for (var i = 0; i < maxSpawn; i++)
         {
-            GenerateTerrain();    
+            GenerateTerrain(true);    
         }
     }
 
-    public void GenerateTerrain()
+    public void GenerateTerrain(bool start)
     {
-        var type = 0;
+        var distance = 0f;
+        try
+        {
+            //If _terrains list is empty, it will throw exception
+            distance = _terrains.Last().transform.position.z - playerTransform.position.z;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        if (!(spawnDistance > distance) && !start) return;
+        int type;
         if (_terrainCounter == 0)
         {
             _generateSameTerrain = false;
@@ -33,7 +49,7 @@ public class LevelGenerator : MonoBehaviour
         {
             _generateSameTerrain = true;
         }
-        
+            
         if (_generateSameTerrain)
         {
             type = _lastTerrainType;
@@ -44,8 +60,13 @@ public class LevelGenerator : MonoBehaviour
             _lastTerrainType = type;
             _terrainCounter = GenerateTerrainGroupNumber();
         }
-        
-        var newTerrain = Instantiate(terrains[type], _currentPosition, Quaternion.identity);
+            
+        InstantiateTerrain(type);
+    }
+
+    private void InstantiateTerrain(int type)
+    {
+        var newTerrain = Instantiate(terrainTypes[type], _currentPosition, Quaternion.identity);
         _terrains.Add(newTerrain);
         newTerrain.transform.SetParent(level);
         if (_terrains.Count > maxSpawn)
