@@ -1109,6 +1109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1440353948}
   - component: {fileID: 1440353947}
+  - component: {fileID: 1440353949}
   m_Layer: 0
   m_Name: Level Generation
   m_TagString: Untagged
@@ -1133,6 +1134,7 @@ MonoBehaviour:
   - {fileID: 5113632004828948762, guid: 7bf971c106d22324f99aa964733db8ba, type: 3}
   - {fileID: 4370772384425660274, guid: 798893d41ac71d24a963ff61b0ca9ec5, type: 3}
   playerTransform: {fileID: 2014476205}
+  _objectGenerator: {fileID: 1440353949}
   maxSpawn: 30
   spawnDistance: 20
   level: {fileID: 1088281516}
@@ -1150,6 +1152,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440353949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440353946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417522bda6ef95c4b9cb2d08b9c0e6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1765942253
 PrefabInstance:
   m_ObjectHideFlags: 0

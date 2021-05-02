@@ -14,12 +14,14 @@ public class TerrainGenerator : MonoBehaviour
 
     private readonly List<GameObject> _terrains = new List<GameObject>();
     private Vector3 _currentPosition = new Vector3(0, 1, -7);
+    private ObjectGenerator _objectGenerator;
     private bool _generateSameTerrain;
     private int _lastTerrainType;
     private int _terrainCounter = 8;
     
     private void Start()
     {
+        _objectGenerator = GetComponent<ObjectGenerator>();
         for (var i = 0; i < maxSpawn; i++)
         {
             GenerateTerrain(true);    
@@ -76,6 +78,7 @@ public class TerrainGenerator : MonoBehaviour
         }
         _currentPosition.z++;
         _terrainCounter--;
+        _objectGenerator.GenerateObjects(newTerrain, type);
     }
 
     private static int GenerateTerrainGroupNumber()
