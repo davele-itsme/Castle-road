@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class LevelGenerator : MonoBehaviour
+public class TerrainGenerator : MonoBehaviour
 {
     [SerializeField] private List<GameObject> terrainTypes = new List<GameObject>();
     [SerializeField] private Transform playerTransform;
