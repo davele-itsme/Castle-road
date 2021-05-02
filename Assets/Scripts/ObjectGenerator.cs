@@ -10,6 +10,14 @@ public class ObjectGenerator : MonoBehaviour
         {
            GenerateGrassObjects(newTerrain, type);
         }
+        else if (type == 1)
+        {
+            GenerateRoadObjects(newTerrain, type);
+        }
+        else
+        {
+            GenerateRiverObjects(newTerrain, type);
+        }
     }
 
     private void GenerateGrassObjects(GameObject newTerrain, int type)
@@ -29,5 +37,15 @@ public class ObjectGenerator : MonoBehaviour
             newObject.transform.SetParent(newTerrain.transform);
             numberOfObjects--;
         } while (numberOfObjects > 0);
+    }
+    
+    private void GenerateRoadObjects(GameObject newTerrain, int type)
+    {
+
+    }
+    
+    private void GenerateRiverObjects(GameObject newTerrain, int type)
+    {
+        
     }
 }

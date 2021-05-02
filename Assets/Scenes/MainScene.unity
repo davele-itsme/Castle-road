@@ -1134,7 +1134,6 @@ MonoBehaviour:
   - {fileID: 5113632004828948762, guid: 7bf971c106d22324f99aa964733db8ba, type: 3}
   - {fileID: 4370772384425660274, guid: 798893d41ac71d24a963ff61b0ca9ec5, type: 3}
   playerTransform: {fileID: 2014476205}
-  _objectGenerator: {fileID: 1440353949}
   maxSpawn: 30
   spawnDistance: 20
   level: {fileID: 1088281516}
@@ -1164,6 +1163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417522bda6ef95c4b9cb2d08b9c0e6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectTypes:
+  - {fileID: 7346536146788760423, guid: 9bc4b6980d1a6f643bc2f21feba8dd28, type: 3}
+  - {fileID: 4089679230838217186, guid: 1f9de41f14005a0448cd0a15746f3142, type: 3}
+  - {fileID: 2840889749586914063, guid: b92e65b132420364d9ddcc6ab7ef7a94, type: 3}
 --- !u!1001 &1765942253
 PrefabInstance:
   m_ObjectHideFlags: 0
