@@ -1275,7 +1275,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19212
+  m_Name: pb_Mesh18962
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1550,7 +1550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _terrainGenerator: {fileID: 1440353947}
   movingTime: 0.25
-  timeToMove: 0.1
+  timeToMove: 0.15
   playerTransform: {fileID: 1777668971}
 --- !u!4 &2014476205 stripped
 Transform:
