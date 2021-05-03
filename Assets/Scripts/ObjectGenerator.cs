@@ -1,23 +1,28 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ObjectGenerator : MonoBehaviour
 {
     [SerializeField] private List<GameObject> grassObjectTypes = new List<GameObject>();
     [SerializeField] private GameObject woodLogGenerator;
+    
     public void GenerateObjects(GameObject newTerrain, int type)
     {
-        if (type == 0)
+        switch (type)
         {
-           GenerateGrassObjects(newTerrain);
-        }
-        else if (type == 1)
-        {
-            GenerateRoadObjects(newTerrain);
-        }
-        else if(type == 2)
-        {
-            GenerateRiverObjects(newTerrain);
+            case (0): 
+                GenerateGrassObjects(newTerrain);
+                break;
+            case (1):
+                GenerateRoadObjects(newTerrain);
+                break;
+            case (2):
+                GenerateRiverObjects(newTerrain);
+                break;
+            default:
+                throw new Exception("Object Generator: This type of terrain does not exist.");
         }
     }
 
