@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class TerrainGenerator : MonoBehaviour
 {
@@ -58,9 +57,9 @@ public class TerrainGenerator : MonoBehaviour
         }
         else
         {
-            type = GenerateNumberExclude(_lastTerrainType);
+            type = NumberGenerator.GenerateNumberWithExclude(_lastTerrainType);
             _lastTerrainType = type;
-            _terrainCounter = GenerateTerrainGroupNumber();
+            _terrainCounter = NumberGenerator.GenerateTerrainGroupNumber();
         }
             
         InstantiateTerrain(type);
@@ -79,20 +78,5 @@ public class TerrainGenerator : MonoBehaviour
         _currentPosition.z++;
         _terrainCounter--;
         _objectGenerator.GenerateObjects(newTerrain, type);
-    }
-
-    private static int GenerateTerrainGroupNumber()
-    {
-        var numbers = new[] { 1, 2, 2, 2, 3, 3, 3, 4, 4, 5};
-        var index = Random.Range(0, 10);
-        return numbers[index];
-    }
-
-    private static int GenerateNumberExclude(int excludedNumber)
-    {
-        var values = new[] {0, 1, 2};
-        values = values.Where(val => val != excludedNumber).ToArray();
-        var randomNumber = Random.Range(0, 2);
-        return values[randomNumber];
     }
 }
