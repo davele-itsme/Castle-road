@@ -6,7 +6,12 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: MonkMove
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: monk_material
+    second: {fileID: 2100000, guid: f903eb8c87f3a4943802614744acec5b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
