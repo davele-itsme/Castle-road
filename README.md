@@ -1,4 +1,7 @@
-<!-- PROJECT LOGO -->
+<!-- INTRODUCTION -->
+
+![Castle-road](https://user-images.githubusercontent.com/42817904/117027430-f9f12a80-acfc-11eb-8bf8-890c9b0848bd.gif)
+
 <br />
 <p align="center">
   <h2 align="center">CASTLE ROAD</h2>
