@@ -64,7 +64,7 @@ Publishing the game using WebGL is planned.
 
 1. Clone the repository:
   ```
- gh repo clone davele-itsme/Castle-road
+ git clone https://github.com/davele-itsme/Castle-road.git
   ```
 2. Open the game in Unity
 3. Open the scene: `/Assets/Scenes/MainScene.unity`
