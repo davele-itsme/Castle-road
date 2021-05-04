@@ -35,7 +35,7 @@
 
 Unity game inspired by <strong>Crossy road</strong> game on mobile platforms. Castle road combines <strong>Arcade runner</strong> genre with <strong>RPG</strong> elements.  
 
-<strongFeatures:</strong>
+<strong>Features:</strong>
 * Spawning of enemies attacking you
 * Spawning of obstacles when running
 * Boss fight at the end of the journey
