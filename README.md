@@ -57,7 +57,7 @@ Publishing the game using WebGL is planned.
 
 ### Prerequisites
 
-* [Unity](https://unity.com/)
+* [Unity](https://unity.com/) Version 2020.3.5f1
 
 ### Installation
 
@@ -67,4 +67,5 @@ Publishing the game using WebGL is planned.
   ```
 2. Open the game in Unity
 3. Open the scene: `/Assets/Scenes/MainScene.unity`
+4. Play the game
 
