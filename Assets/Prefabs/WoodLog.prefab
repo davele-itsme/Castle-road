@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4458974973576849948}
   m_Layer: 0
-  m_Name: WoodLog 1
+  m_Name: WoodLog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed7c6d969a88b442aa5308a677e6f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 8767198379048897028, guid: b3f8806509d3ef44aa6807d8e4568519, type: 3}
 --- !u!54 &228616747807273151
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
                 if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
                 {
                     _targetPos = _startPos + new Vector3(0, 0, verValue);
+                    _targetPos.x = Mathf.Round(_targetPos.x);
                     _isMoving = true; 
                     _anim.SetTrigger(Move); 
                     if (verValue == 1f) 
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
                 if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
                 {
                     _targetPos = _startPos + new Vector3(horValue, 0, 0);
+                    _targetPos.x = Mathf.Round(_targetPos.x);
                     _isMoving = true;
                     _anim.SetTrigger(Move);
                 }
@@ -104,6 +106,4 @@ public class PlayerController : MonoBehaviour
         }
         playerTransform.rotation = Quaternion.Euler(directionVector);
     }
-    
-    
 }

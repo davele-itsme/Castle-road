@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Road
   - PlayerMod
+  - WoodLog
   layers:
   - Default
   - TransparentFX
