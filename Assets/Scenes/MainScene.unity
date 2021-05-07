@@ -1275,7 +1275,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16326
+  m_Name: pb_Mesh16328
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1548,7 +1548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eff89ed0077e344993d1f10cdef2eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _terrainGenerator: {fileID: 1440353947}
+  terrainGenerator: {fileID: 1440353947}
   movingTime: 0.25
   timeToMove: 0.15
   playerTransform: {fileID: 1777668971}
