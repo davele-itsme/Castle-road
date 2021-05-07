@@ -1,35 +1,40 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class LogController : MonoBehaviour
 {
+    private Rigidbody _rigidbody;
     private float _speed;
     private void Start()
     {
+        _rigidbody = GetComponent<Rigidbody>();
         _speed = Random.Range(1.2f, 1.5f);
     }
     private void Update()
     {
-        transform.Translate(Vector3.right * (Time.deltaTime * _speed));
+        transform.parent.Translate(Vector3.right * (Time.deltaTime * _speed));
         if (transform.position.x >= 10)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("LOL");
+            Debug.Log("JUMPED");
+            other.transform.parent = transform.parent;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("LOL2");
+            Debug.Log("LEFT");
+            other.transform.parent = null;
         }
     }
 }

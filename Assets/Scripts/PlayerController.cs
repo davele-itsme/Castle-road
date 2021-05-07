@@ -104,4 +104,6 @@ public class PlayerController : MonoBehaviour
         }
         playerTransform.rotation = Quaternion.Euler(directionVector);
     }
+    
+    
 }
