@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3783379834669789674}
   - component: {fileID: 3272740237070765711}
   - component: {fileID: 6204727051932333161}
+  - component: {fileID: 6349670330642494356}
   m_Layer: 0
   m_Name: Stump
   m_TagString: Untagged
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6349670330642494356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141704032580994496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.08577578, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2840889749586914063
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +106,7 @@ GameObject:
   - component: {fileID: 1581637741852233520}
   - component: {fileID: 4010493318315508421}
   - component: {fileID: 2441248261164140760}
+  - component: {fileID: -2319766818531964348}
   m_Layer: 0
   m_Name: Tree02
   m_TagString: Untagged
@@ -108,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 2840889749586914063}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.69398284, y: 1.5483937, z: 2.6872897}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 3783379834669789674}
   m_Father: {fileID: 0}
@@ -163,3 +178,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-2319766818531964348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840889749586914063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.7511524, z: 0.3}
+  m_Center: {x: 0.00000000745058, y: 0.44822955, z: -0.00000001490116}

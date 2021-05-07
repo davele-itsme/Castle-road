@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Animator _anim;
     private static readonly int Move = Animator.StringToHash("Move");
     private float _tInterpolate, _tMove;
+    private RaycastHit _hitInfo;
 
     private void Awake()
     {
@@ -51,21 +52,31 @@ public class PlayerController : MonoBehaviour
             {
                 RotatePlayer(VERTICAL, verValue);
                 _startPos = transform.position;
-                _targetPos = _startPos + new Vector3(0, 0, verValue);
-                _isMoving = true;
-                _anim.SetTrigger(Move);
-                if (verValue == 1f)
+
+                var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(0, 0, verValue));
+                if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
                 {
-                    terrainGenerator.GenerateTerrain(false);
+                    _targetPos = _startPos + new Vector3(0, 0, verValue);
+                    _isMoving = true; 
+                    _anim.SetTrigger(Move); 
+                    if (verValue == 1f) 
+                    { 
+                        terrainGenerator.GenerateTerrain(false);
+                    }
                 }
             }
             else if (Math.Abs(horValue) == 1f)
             {
                 RotatePlayer(HORIZONTAL, horValue);
                 _startPos = transform.position;
-                _targetPos = _startPos + new Vector3(horValue, 0, 0);
-                _isMoving = true;
-                _anim.SetTrigger(Move);
+                
+                var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(horValue, 0, 0));
+                if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
+                {
+                    _targetPos = _startPos + new Vector3(horValue, 0, 0);
+                    _isMoving = true;
+                    _anim.SetTrigger(Move);
+                }
             }
         }
     }
