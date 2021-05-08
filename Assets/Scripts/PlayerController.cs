@@ -37,14 +37,6 @@ public class PlayerController : MonoBehaviour
             {
                 _tMove += Time.deltaTime;
                 transform.position = _targetPos;
-                var lol = new Ray(_targetPos, Vector3.down);
-                if (Physics.Raycast(lol, out _hitInfo, 1f))
-                {
-                    if (_hitInfo.collider.gameObject.CompareTag("Water") && !IsOnWoodLog)
-                    {
-                        isFalling = true;
-                    }
-                }
                 if (!(_tMove >= timeToMove)) return;
                 _isMoving = false;
                 _tInterpolate = 0;
@@ -66,7 +58,8 @@ public class PlayerController : MonoBehaviour
             if (Math.Abs(verValue) == 1f)
             {
                 RotatePlayer(VERTICAL, verValue);
-                _startPos = transform.position;
+                var position = transform.position;
+                _startPos = new Vector3(position.x, 1.5f, position.z);
 
                 var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(0, 0, verValue));
                 if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
@@ -84,8 +77,9 @@ public class PlayerController : MonoBehaviour
             else if (Math.Abs(horValue) == 1f)
             {
                 RotatePlayer(HORIZONTAL, horValue);
-                _startPos = transform.position;
-                
+                var position = transform.position;
+                _startPos = new Vector3(position.x, 1.5f, position.z);
+
                 var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(horValue, 0, 0));
                 if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
                 {
