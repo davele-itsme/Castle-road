@@ -216,6 +216,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 40, y: 110, z: 0}
+--- !u!1 &916473132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8767862462622995687, guid: b3f8806509d3ef44aa6807d8e4568519, type: 3}
+  m_PrefabInstance: {fileID: 2080200129}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &916473135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916473132}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 1, z: 0.8}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,10 +710,6 @@ PrefabInstance:
     - target: {fileID: 8765676042500588019, guid: b3f8806509d3ef44aa6807d8e4568519, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8767198379048897027, guid: b3f8806509d3ef44aa6807d8e4568519, type: 3}
-      propertyPath: m_Center.y
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8767198379048897028, guid: b3f8806509d3ef44aa6807d8e4568519, type: 3}
       propertyPath: terrainGenerator
