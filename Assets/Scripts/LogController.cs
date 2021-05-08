@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,23 +18,25 @@ public class LogController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             other.transform.parent = transform.parent;
-            var playerController = other.GetComponent<PlayerController>();
+            var playerController = other.collider.GetComponent<PlayerController>();
             playerController.IsOnWoodLog = true;
+            Debug.Log("ONWOOD");
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             other.transform.parent = null;
-            var playerController = other.GetComponent<PlayerController>();
+            var playerController = other.collider.GetComponent<PlayerController>();
             playerController.IsOnWoodLog = false;
+            Debug.Log("NOTONWOOD");
         }
     }
 }
