@@ -58,8 +58,7 @@ public class PlayerController : MonoBehaviour
             if (Math.Abs(verValue) == 1f)
             {
                 RotatePlayer(VERTICAL, verValue);
-                var position = transform.position;
-                _startPos = new Vector3(position.x, 1.5f, position.z);
+                _startPos = transform.position;
 
                 var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(0, 0, verValue));
                 if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
@@ -77,8 +76,7 @@ public class PlayerController : MonoBehaviour
             else if (Math.Abs(horValue) == 1f)
             {
                 RotatePlayer(HORIZONTAL, horValue);
-                var position = transform.position;
-                _startPos = new Vector3(position.x, 1.5f, position.z);
+                _startPos = transform.position;
 
                 var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(horValue, 0, 0));
                 if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
