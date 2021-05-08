@@ -5,97 +5,74 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private TerrainGenerator terrainGenerator;
-    [SerializeField] private float movingTime, timeToMove;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private float speed;
 
     private readonly string VERTICAL = "Vertical";
     private readonly string HORIZONTAL = "Horizontal";
     
     private Vector3 _startPos, _targetPos;
     private bool _isMoving;
-    private Animator _anim;
     private static readonly int Move = Animator.StringToHash("Move");
     private float _tInterpolate, _tMove;
     private RaycastHit _hitInfo;
     public bool IsOnWoodLog { get; set; }
     private bool isFalling;
-
-    private void Awake()
+    private Rigidbody _rigidbody;
+    private Vector3 movement;
+    
+    private void Start()
     {
-        _anim = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
+    
     private void Update()
     {
-        MovePlayer();
+        movement.z = Input.GetAxisRaw(VERTICAL);
+        movement.x = Input.GetAxisRaw(HORIZONTAL);
+        if (movement.z != 0)
+        { 
+            transform.rotation = Quaternion.LookRotation (new Vector3(0, _rigidbody.position.y, movement.z));
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody.MovePosition(_rigidbody.position + movement * (Time.deltaTime * speed));
     }
 
     private void MovePlayer()
     {
-        if (_isMoving)
-        {
-            if (Vector3.Distance(_startPos, transform.position) >= 1f)
-            {
-                _tMove += Time.deltaTime;
-                transform.position = _targetPos;
-                var lol = new Ray(_targetPos, Vector3.down);
-                if (Physics.Raycast(lol, out _hitInfo, 1f))
-                {
-                    if (_hitInfo.collider.gameObject.CompareTag("Water") && !IsOnWoodLog)
-                    {
-                        isFalling = true;
-                    }
-                }
-                if (!(_tMove >= timeToMove)) return;
-                _isMoving = false;
-                _tInterpolate = 0;
-                _tMove = 0;
-                return;
-            }
-            
-            _tInterpolate += Time.deltaTime / movingTime;
-            transform.position = Vector3.Lerp(_startPos, _targetPos, _tInterpolate);
-        }
-        else if (isFalling)
-        {
-            transform.position = Vector3.down * (2 * Time.deltaTime);
-        }
-        else
-        {
-            var verValue = Input.GetAxisRaw(VERTICAL);
-            var horValue = Input.GetAxisRaw(HORIZONTAL);
-            if (Math.Abs(verValue) == 1f)
-            {
-                RotatePlayer(VERTICAL, verValue);
-                _startPos = transform.position;
-
-                var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(0, 0, verValue));
-                if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
-                {
-                    _targetPos = _startPos + new Vector3(0, 0, verValue);
-                    _targetPos.x = Mathf.Round(_targetPos.x);
-                    _isMoving = true; 
-                    _anim.SetTrigger(Move); 
-                    if (verValue == 1f) 
-                    { 
-                        terrainGenerator.GenerateTerrain(false);
-                    }
-                }
-            }
-            else if (Math.Abs(horValue) == 1f)
-            {
-                RotatePlayer(HORIZONTAL, horValue);
-                _startPos = transform.position;
-                
-                var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(horValue, 0, 0));
-                if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
-                {
-                    _targetPos = _startPos + new Vector3(horValue, 0, 0);
-                    _targetPos.x = Mathf.Round(_targetPos.x);
-                    _isMoving = true;
-                    _anim.SetTrigger(Move);
-                }
-            }
-        }
+        // if (Math.Abs(verValue) == 1f)
+            // {
+            //     RotatePlayer(VERTICAL, verValue);
+            //     _startPos = transform.position;
+            //
+            //     var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(0, 0, verValue));
+            //     if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
+            //     {
+            //         _targetPos = _startPos + new Vector3(0, 0, verValue);
+            //         _targetPos.x = Mathf.Round(_targetPos.x);
+            //         _isMoving = true; 
+            //         _anim.SetTrigger(Move); 
+            //         if (verValue == 1f) 
+            //         { 
+            //             terrainGenerator.GenerateTerrain(false);
+            //         }
+            //     }
+            // }
+            // else if (Math.Abs(horValue) == 1f)
+            // {
+            //     RotatePlayer(HORIZONTAL, horValue);
+            //
+            //     var landingRay = new Ray(new Vector3(_startPos.x, 2, _startPos.z), new Vector3(horValue, 0, 0));
+            //     if (!Physics.Raycast(landingRay, out _hitInfo, 1f)) 
+            //     {
+            //         _targetPos = _startPos + new Vector3(horValue, 0, 0);
+            //         _targetPos.x = Mathf.Round(_targetPos.x);
+            //         _isMoving = true;
+            //     }
+            // }
     }
 
     private void RotatePlayer(string direction, float value)
@@ -119,6 +96,18 @@ public class PlayerController : MonoBehaviour
                 directionVector.y = 180;
             }
         }
-        playerTransform.rotation = Quaternion.Euler(directionVector);
+     
+    }
+
+    private void lol()
+    {
+        var lol = new Ray(_targetPos, Vector3.down);
+        if (Physics.Raycast(lol, out _hitInfo, 1f))
+        {
+            if (_hitInfo.collider.gameObject.CompareTag("Water") && !IsOnWoodLog)
+            {
+                isFalling = true;
+            }
+        }
     }
 }
