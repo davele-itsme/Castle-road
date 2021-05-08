@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed7c6d969a88b442aa5308a677e6f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 8767198379048897028, guid: b3f8806509d3ef44aa6807d8e4568519, type: 3}
+  playerController: {fileID: 3265561213547706073, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
 --- !u!54 &228616747807273151
 Rigidbody:
   m_ObjectHideFlags: 0

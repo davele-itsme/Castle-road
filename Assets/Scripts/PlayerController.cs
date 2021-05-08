@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private static readonly int Move = Animator.StringToHash("Move");
     private float _tInterpolate, _tMove;
     private RaycastHit _hitInfo;
+    public bool IsOnWoodLog { get; set; }
+    private bool isFalling;
 
     private void Awake()
     {
@@ -33,8 +36,16 @@ public class PlayerController : MonoBehaviour
             if (Vector3.Distance(_startPos, transform.position) >= 1f)
             {
                 _tMove += Time.deltaTime;
-                if (!(_tMove >= timeToMove)) return;
                 transform.position = _targetPos;
+                var lol = new Ray(_targetPos, Vector3.down);
+                if (Physics.Raycast(lol, out _hitInfo, 1f))
+                {
+                    if (_hitInfo.collider.gameObject.CompareTag("Water") && !IsOnWoodLog)
+                    {
+                        isFalling = true;
+                    }
+                }
+                if (!(_tMove >= timeToMove)) return;
                 _isMoving = false;
                 _tInterpolate = 0;
                 _tMove = 0;
@@ -43,6 +54,10 @@ public class PlayerController : MonoBehaviour
             
             _tInterpolate += Time.deltaTime / movingTime;
             transform.position = Vector3.Lerp(_startPos, _targetPos, _tInterpolate);
+        }
+        else if (isFalling)
+        {
+            transform.position = Vector3.down * (2 * Time.deltaTime);
         }
         else
         {
