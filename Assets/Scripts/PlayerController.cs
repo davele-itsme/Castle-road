@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float _tInterpolate, _tMove;
     private RaycastHit _hitInfo;
     public bool IsOnWoodLog { get; set; }
-    private bool isFalling;
+    private bool _isFalling;
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (_hitInfo.collider.gameObject.CompareTag("Water") && !IsOnWoodLog)
                     {
-                        isFalling = true;
+                        _isFalling = true;
                     }
                 }
                 if (!(_tMove >= timeToMove)) return;
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
             _tInterpolate += Time.deltaTime / movingTime;
             transform.position = Vector3.Lerp(_startPos, _targetPos, _tInterpolate);
         }
-        else if (isFalling)
+        else if (_isFalling)
         {
             transform.position += Vector3.down;
             Destroy(this);
@@ -120,5 +120,17 @@ public class PlayerController : MonoBehaviour
             }
         }
         playerTransform.rotation = Quaternion.Euler(directionVector);
+    }
+
+    public void IsStaying()
+    {
+        var lol = new Ray(_targetPos, Vector3.down);
+        if (Physics.Raycast(lol, out _hitInfo, 1f))
+        {
+            if (_hitInfo.collider.gameObject.CompareTag("Water") && !IsOnWoodLog && !_isMoving)
+            {
+                _isFalling = true;
+            }
+        }
     }
 }

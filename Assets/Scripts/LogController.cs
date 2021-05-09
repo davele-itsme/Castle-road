@@ -32,6 +32,7 @@ public class LogController : MonoBehaviour
         {
             var playerController = other.GetComponent<PlayerController>();
             playerController.IsOnWoodLog = false;
+            playerController.IsStaying();
         }
     }
 }
