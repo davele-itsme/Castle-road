@@ -1,12 +1,17 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class LogController : MonoBehaviour
 {
     private float _speed;
+    private Animator _animator;
+    private static readonly int OnPlayerInteraction = Animator.StringToHash("OnPlayerInteraction");
+
     private void Start()
     {
         _speed = Random.Range(1.2f, 1.5f);
+        _animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -17,12 +22,13 @@ public class LogController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             var playerController = other.GetComponent<PlayerController>();
             playerController.IsOnWoodLog = true;
+            _animator.SetTrigger(OnPlayerInteraction);
         }
     }
 
