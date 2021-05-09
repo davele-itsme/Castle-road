@@ -36,7 +36,7 @@ public class ObjectGenerator : MonoBehaviour
             var randomObj = Random.Range(0, grassObjectTypes.Count);
             int x;
             do {
-                x = Random.Range(-7, 8);
+                x = Random.Range(-6, 7);
             } while (listOfX.Contains(x));
             listOfX.Add(x);
             var newObject =  Instantiate(grassObjectTypes[randomObj], new Vector3(x, 1.5f, z), Quaternion.identity);
