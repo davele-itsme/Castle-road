@@ -25,6 +25,8 @@ public class TerrainGenerator : MonoBehaviour
         {
             GenerateTerrain(true);    
         }
+        
+        _objectGenerator.GenerateCuboid(_terrains.Last());
     }
 
     public void GenerateTerrain(bool start)

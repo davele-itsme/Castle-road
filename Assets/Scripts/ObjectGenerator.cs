@@ -7,6 +7,8 @@ public class ObjectGenerator : MonoBehaviour
 {
     [SerializeField] private List<GameObject> grassObjectTypes = new List<GameObject>();
     [SerializeField] private GameObject woodLogGenerator;
+    [SerializeField] private GameObject cuboid;
+    private  List<int> _grassObjectsXPosition = new List<int>();
     
     public void GenerateObjects(GameObject newTerrain, int type)
     {
@@ -28,17 +30,17 @@ public class ObjectGenerator : MonoBehaviour
 
     private void GenerateGrassObjects(GameObject newTerrain)
     {
+        _grassObjectsXPosition.Clear();
         var z = newTerrain.transform.position.z;
         var numberOfObjects = Random.Range(2, 6);
-        var listOfX = new List<int>();
         do
         {
             var randomObj = Random.Range(0, grassObjectTypes.Count);
             int x;
             do {
                 x = Random.Range(-6, 7);
-            } while (listOfX.Contains(x));
-            listOfX.Add(x);
+            } while (_grassObjectsXPosition.Contains(x));
+            _grassObjectsXPosition.Add(x);
             var newObject =  Instantiate(grassObjectTypes[randomObj], new Vector3(x, 1.5f, z), Quaternion.identity);
             newObject.transform.SetParent(newTerrain.transform);
             numberOfObjects--;
@@ -55,5 +57,23 @@ public class ObjectGenerator : MonoBehaviour
         var z = newTerrain.transform.position.z;
         var newWoodGenerator = Instantiate(woodLogGenerator, new Vector3(-10, 1, z), Quaternion.identity);
         newWoodGenerator.transform.SetParent(newTerrain.transform);
+    }
+
+    public void GenerateCuboid(GameObject terrain)
+    {
+        int x;
+        if (terrain.CompareTag("Grass"))
+        {
+            do {
+                x = Random.Range(-6, 7);
+            } while (_grassObjectsXPosition.Contains(x));
+        }
+        else
+        {
+            x = Random.Range(-6, 7);
+        }
+
+        var newCuboid = Instantiate(cuboid, new Vector3(x, 2, terrain.transform.position.z), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        newCuboid.transform.SetParent(terrain.transform);
     }
 }
