@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,24 @@ public class LogController : MonoBehaviour
         if (transform.position.x >= 10)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("ONWOOD");
+            other.gameObject.GetComponent<PlayerController>().IsOnWoodLog = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("NOTONWOOD");
+            other.gameObject.GetComponent<PlayerController>().IsOnWoodLog = false;
         }
     }
 }

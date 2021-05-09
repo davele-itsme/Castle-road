@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private float _tInterpolate, _tMove;
     private RaycastHit _hitInfo;
     public bool IsOnWoodLog { get; set; }
-    private bool isFalling;
+    private bool _isFalling;
 
     private void Awake()
     {
@@ -37,6 +37,16 @@ public class PlayerController : MonoBehaviour
             {
                 _tMove += Time.deltaTime;
                 transform.position = _targetPos;
+                var lol = new Ray(_targetPos, Vector3.down);
+                if (Physics.Raycast(lol, out _hitInfo, 1f))
+                {
+                    Debug.Log("Water");
+                    if (_hitInfo.collider.gameObject.CompareTag("Water") && !IsOnWoodLog)
+                    {
+                        Debug.Log("FALL DOWN");
+                        _isFalling = true;
+                    }
+                }
                 if (!(_tMove >= timeToMove)) return;
                 _isMoving = false;
                 _tInterpolate = 0;
@@ -47,7 +57,7 @@ public class PlayerController : MonoBehaviour
             _tInterpolate += Time.deltaTime / movingTime;
             transform.position = Vector3.Lerp(_startPos, _targetPos, _tInterpolate);
         }
-        else if (isFalling)
+        else if (_isFalling)
         {
             transform.position = Vector3.down * (2 * Time.deltaTime);
         }
