@@ -21,7 +21,6 @@ public class LogController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.transform.parent = transform.parent;
             var playerController = other.GetComponent<PlayerController>();
             playerController.IsOnWoodLog = true;
         }
@@ -31,7 +30,6 @@ public class LogController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.transform.parent = null;
             var playerController = other.GetComponent<PlayerController>();
             playerController.IsOnWoodLog = false;
         }

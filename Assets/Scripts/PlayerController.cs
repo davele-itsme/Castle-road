@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class PlayerController : MonoBehaviour
 {
@@ -57,7 +56,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (isFalling)
         {
-            transform.position = Vector3.down * (2 * Time.deltaTime);
+            transform.position += Vector3.down;
+            Destroy(this);
         }
         else
         {
