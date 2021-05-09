@@ -29,14 +29,14 @@ public class ObjectGenerator : MonoBehaviour
     private void GenerateGrassObjects(GameObject newTerrain)
     {
         var z = newTerrain.transform.position.z;
-        var numberOfObjects = Random.Range(3, 8);
+        var numberOfObjects = Random.Range(3, 7);
         var listOfX = new List<int>();
         do
         {
             var randomObj = Random.Range(0, grassObjectTypes.Count);
             int x;
             do {
-                x = Random.Range(-10, 11);
+                x = Random.Range(-7, 8);
             } while (listOfX.Contains(x));
             listOfX.Add(x);
             var newObject =  Instantiate(grassObjectTypes[randomObj], new Vector3(x, 1.5f, z), Quaternion.identity);
