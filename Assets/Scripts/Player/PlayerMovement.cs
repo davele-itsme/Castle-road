@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public bool IsOnWoodLog { get; set; }
     public bool isMoving;
     
-    [SerializeField] private TerrainGenerator terrainGenerator;
     [SerializeField] private float movingTime, timeToMove;
 
     private Vector3 _startPos, _targetPos;

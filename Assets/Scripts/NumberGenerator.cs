@@ -1,22 +1,29 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using Random = System.Random;
 
 public static class NumberGenerator
 {
-    public static int GenerateTerrainGroupNumber()
+    public static int GenerateTerrainAmountWithProbability(int[] array)
     {
         var random = new Random();
-        var numbers = new[] { 1, 2, 2, 2, 3, 3, 3, 4, 4, 5};
-        var index = random.Next(0, 10);
-        return numbers[index];
+        var index = random.Next(0, array.Length);
+        return array[index];
     }
     
-    public static int GenerateNumberWithExclude(int excludedNumber)
+    public static int GenerateNumberWithExclude(List<GameObject> terrainTypes, int excludedNumber)
     {
         var random = new Random();
-        var values = new[] {0, 1, 2};
-        values = values.Where(val => val != excludedNumber).ToArray();
-        var randomNumber = random.Next(0, 2);
+        var values = new List<int>();
+        for(var i = 0; i < terrainTypes.Count; i++)
+        {
+            if (i != excludedNumber)
+            {
+                values.Add(i);
+            }
+        }
+        var randomNumber = random.Next(0, terrainTypes.Count - 1);
         return values[randomNumber];
     }
     

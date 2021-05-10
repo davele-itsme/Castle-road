@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TerrainGenerator : MonoBehaviour
+public class TerrainController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> terrainTypes = new List<GameObject>();
     [SerializeField] private Transform playerTransform;
@@ -26,7 +26,7 @@ public class TerrainGenerator : MonoBehaviour
             GenerateTerrain();    
         }
         
-        _objectGenerator.GenerateCuboid(_terrains.Last());
+        // _objectGenerator.GenerateCuboid(_terrains.Last());
     }
 
     public void GenerateTerrain()
@@ -35,6 +35,7 @@ public class TerrainGenerator : MonoBehaviour
         {
             var type = GenerateTerrainType();
             InstantiateTerrain(type);
+            DestroyTerrain();
         }
     }
 
@@ -49,9 +50,10 @@ public class TerrainGenerator : MonoBehaviour
     {
         if (_terrainCounter == 0)
         {
-            var type = NumberGenerator.GenerateNumberWithExclude(_lastTerrainType);
+            var type = NumberGenerator.GenerateNumberWithExclude(terrainTypes, _lastTerrainType);
             _lastTerrainType = type;
-            _terrainCounter = NumberGenerator.GenerateTerrainGroupNumber();
+            var numbers = new[] { 1, 2, 2, 2, 3, 3, 3, 4, 4, 5};
+            _terrainCounter = NumberGenerator.GenerateTerrainAmountWithProbability(numbers);
             return type;
         }
         return _lastTerrainType;
@@ -62,7 +64,6 @@ public class TerrainGenerator : MonoBehaviour
         var newTerrain = Instantiate(terrainTypes[type], _currentPosition, Quaternion.identity);
         _terrains.Add(newTerrain);
         newTerrain.transform.SetParent(level);
-        DestroyTerrain();
         _currentPosition.z++;
         _objectGenerator.GenerateObjects(newTerrain, type);
     }
