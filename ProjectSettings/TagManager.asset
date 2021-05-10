@@ -10,6 +10,7 @@ TagManager:
   - PlayerMod
   - WoodLog
   - LevelGeneration
+  - River
   layers:
   - Default
   - TransparentFX

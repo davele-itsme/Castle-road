@@ -11,7 +11,7 @@ public class PlayerGravity : MonoBehaviour
 
     private void CheckForWater(RaycastHit hitInfo)
     {
-        if (hitInfo.collider.gameObject.CompareTag("Water") && !_playerMovement.IsOnWoodLog && !_playerMovement.isMoving)
+        if (hitInfo.collider.gameObject.CompareTag("River") && !_playerMovement.IsOnWoodLog && !_playerMovement.isMoving)
         {
             FallDown();
         }

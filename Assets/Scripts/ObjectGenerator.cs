@@ -9,18 +9,23 @@ public class ObjectGenerator : MonoBehaviour
     [SerializeField] private GameObject woodLogGenerator;
     [SerializeField] private GameObject cuboid;
     private  List<int> _grassObjectsXPosition = new List<int>();
-    
-    public void GenerateObjects(GameObject newTerrain, int type)
+
+    private void Awake()
     {
-        switch (type)
+        TerrainController.NewTerrainCreated += GenerateObjects;
+        TerrainController.LastTerrainCreated += GenerateCuboid;
+    }
+    public void GenerateObjects(GameObject newTerrain)
+    {
+        switch (newTerrain.tag)
         {
-            case (0): 
+            case "Grass": 
                 GenerateGrassObjects(newTerrain);
                 break;
-            case (1):
+            case "Road":
                 GenerateRoadObjects(newTerrain);
                 break;
-            case (2):
+            case "River":
                 GenerateRiverObjects(newTerrain);
                 break;
             default:
@@ -61,6 +66,7 @@ public class ObjectGenerator : MonoBehaviour
 
     public void GenerateCuboid(GameObject terrain)
     {
+        Debug.Log("LOL");
         int x;
         if (terrain.CompareTag("Grass"))
         {

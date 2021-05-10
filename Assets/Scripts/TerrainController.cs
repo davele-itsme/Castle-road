@@ -2,8 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//Game manager
 public class TerrainController : MonoBehaviour
 {
+    public delegate void NewTerrain(GameObject terrain);
+    public static event NewTerrain NewTerrainCreated;
+    
+    public delegate void LastTerrain(GameObject terrain);
+    public static event LastTerrain LastTerrainCreated;
+
     [SerializeField] private List<GameObject> terrainTypes = new List<GameObject>();
     [SerializeField] private Transform playerTransform;
     [SerializeField] private int maxSpawn;
@@ -12,21 +19,17 @@ public class TerrainController : MonoBehaviour
     
     private Vector3 _currentPosition;
     private readonly List<GameObject> _terrains = new List<GameObject>();
-    private ObjectGenerator _objectGenerator;
     private int _lastTerrainType;
     private int _terrainCounter = 8;
-    
+
     private void Start()
     {
         _currentPosition = new Vector3(0, 1, -7);
         PlayerMovement.OnForward += GenerateTerrain;
-        _objectGenerator = GetComponent<ObjectGenerator>();
         for (var i = 0; i < maxSpawn; i++)
         {
             GenerateTerrain();    
         }
-        
-        // _objectGenerator.GenerateCuboid(_terrains.Last());
     }
 
     public void GenerateTerrain()
@@ -65,7 +68,10 @@ public class TerrainController : MonoBehaviour
         _terrains.Add(newTerrain);
         newTerrain.transform.SetParent(level);
         _currentPosition.z++;
-        _objectGenerator.GenerateObjects(newTerrain, type);
+        if (NewTerrainCreated != null)
+        {
+            NewTerrainCreated(newTerrain);
+        }
     }
 
     private void DestroyTerrain()
