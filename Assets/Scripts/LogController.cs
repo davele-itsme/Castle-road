@@ -3,6 +3,9 @@ using Random = UnityEngine.Random;
 
 public class LogController : MonoBehaviour
 {
+    public delegate void GravityAction();
+    public static event GravityAction CheckGravity;
+    
     private float _speed;
     private Animator _animator;
     private static readonly int OnPlayerInteraction = Animator.StringToHash("OnPlayerInteraction");
@@ -24,16 +27,19 @@ public class LogController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        var playerController = other.GetComponent<PlayerMovement>();
-        playerController.IsOnWoodLog = true;
+        var playerMovement = other.GetComponent<PlayerMovement>();
+        playerMovement.IsOnWoodLog = true;
         _animator.SetTrigger(OnPlayerInteraction);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        var playerController = other.GetComponent<PlayerMovement>();
-        playerController.IsOnWoodLog = false;
-        // playerController.IsStaying();
+        var playerMovement = other.GetComponent<PlayerMovement>();
+        playerMovement.IsOnWoodLog = false;
+        if (CheckGravity != null)
+        {
+            CheckGravity();
+        }
     }
 }

@@ -1,19 +1,20 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public delegate void GravityAction();
+    public static event GravityAction CheckGravity;
+    public bool IsOnWoodLog { get; set; }
+    public bool isMoving;
+    
     [SerializeField] private TerrainGenerator terrainGenerator;
     [SerializeField] private float movingTime, timeToMove;
     [SerializeField] private Transform playerTransform;
 
     private Vector3 _startPos, _targetPos;
     private Animator _anim;
-    private bool _isMoving;
     private static readonly int Move = Animator.StringToHash("Move");
-    public bool IsOnWoodLog { get; set; }
-    private bool _isFalling;
 
     private void Start()
     {
@@ -24,11 +25,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void VerticallyMove(float verValue)
     {
-        if (!_isMoving)
+        if (!isMoving)
         {
             _startPos = transform.position;
             _targetPos = _startPos + new Vector3(0, 0, verValue);
-            _isMoving = true; 
+            isMoving = true; 
             _anim.SetTrigger(Move);
             StartCoroutine(MovePlayer());
             if (verValue == 1f) 
@@ -40,11 +41,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void HorizontallyMove(float horValue)
     {
-        if (!_isMoving)
+        if (!isMoving)
         {
             _startPos = transform.position;
             _targetPos = _startPos + new Vector3(horValue, 0, 0);
-            _isMoving = true;
+            isMoving = true;
             _anim.SetTrigger(Move);
             StartCoroutine(MovePlayer());
         }
@@ -61,6 +62,10 @@ public class PlayerMovement : MonoBehaviour
         } while (Vector3.Distance(_startPos, transform.position) < 1f);
         transform.position = _targetPos;
         yield return new WaitForSeconds(timeToMove);
-        _isMoving = false;
+        isMoving = false;
+        if (CheckGravity != null)
+        {
+            CheckGravity();
+        }
     }
 }

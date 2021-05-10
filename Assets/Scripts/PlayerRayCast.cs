@@ -3,18 +3,23 @@ using UnityEngine;
 public class PlayerRayCast : MonoBehaviour
 {
     public delegate void HorMove(float value);
-
     public static event HorMove HorizontalMove;
 
     public delegate void VerMove(float value);
-
     public static event VerMove VerticalMove;
     
+    public delegate void ObjectBelow(RaycastHit hitInfo);
+    public static event ObjectBelow ObjectBelowFound;
+    
     private RaycastHit _hitInfo;
+    private PlayerMovement _playerMovement;
     private void Start()
     {
         PlayerInput.HorizontalInput += HorizontalRayCast;
         PlayerInput.VerticalInput += VerticalRayCast;
+        PlayerMovement.CheckGravity += RayCastDown;
+        LogController.CheckGravity += RayCastDown;
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void HorizontalRayCast(float horValue)
@@ -39,13 +44,10 @@ public class PlayerRayCast : MonoBehaviour
 
     private void RayCastDown()
     {
-        // var lol = new Ray(_targetPos, Vector3.down);
-        // if (Physics.Raycast(lol, out _hitInfo, 1f))
-        // {
-        //     if (_hitInfo.collider.gameObject.CompareTag("Water") && !IsOnWoodLog)
-        //     {
-        //         _isFalling = true;
-        //     }
-        // }
+        var ray = new Ray(transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out _hitInfo, 1f) && ObjectBelowFound != null)
+        {
+            ObjectBelowFound(_hitInfo);
+        }
     }
 }
