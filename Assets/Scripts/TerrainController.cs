@@ -25,19 +25,28 @@ public class TerrainController : MonoBehaviour
     private void Start()
     {
         _currentPosition = new Vector3(0, 1, -7);
-        PlayerMovement.OnForward += GenerateTerrain;
-        for (var i = 0; i < maxSpawn; i++)
+        PlayerMovement.OnForward += ControlTerrain;
+        do
         {
-            GenerateTerrain();    
-        }
+            ControlTerrain();
+        } while (CheckDistanceToLastTerrain());
     }
 
-    public void GenerateTerrain()
+    public void ControlTerrain()
     {
         if (CheckDistanceToLastTerrain())
         {
             var type = GenerateTerrainType();
-            InstantiateTerrain(type);
+            for (var i = _terrainCounter; i > 0; i--)
+            {
+                InstantiateTerrain(type);
+                _currentPosition.z++;
+                _terrainCounter--;
+            }
+        }
+
+        if (CheckDistanceToBeginning())
+        {
             DestroyTerrain();
         }
     }
@@ -47,6 +56,13 @@ public class TerrainController : MonoBehaviour
         if (_terrains.Count == 0) return true;
         var distance = _terrains.Last().transform.position.z - playerTransform.position.z;
         return spawnDistance > distance;
+    }
+    
+    private bool CheckDistanceToBeginning()
+    {
+        if (_terrains.Count < maxSpawn) return false;
+        var distance = playerTransform.position.z - _terrains[0].transform.position.z;
+        return maxSpawn - spawnDistance < distance;
     }
 
     private int GenerateTerrainType()
@@ -67,7 +83,6 @@ public class TerrainController : MonoBehaviour
         var newTerrain = Instantiate(terrainTypes[type], _currentPosition, Quaternion.identity);
         _terrains.Add(newTerrain);
         newTerrain.transform.SetParent(level);
-        _currentPosition.z++;
         if (NewTerrainCreated != null)
         {
             NewTerrainCreated(newTerrain);
@@ -81,6 +96,5 @@ public class TerrainController : MonoBehaviour
             Destroy(_terrains[0]);
             _terrains.RemoveAt(0);
         }
-        _terrainCounter--;
     }
 }
