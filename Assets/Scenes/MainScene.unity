@@ -386,6 +386,7 @@ MonoBehaviour:
   maxSpawn: 20
   spawnDistance: 10
   level: {fileID: 1088281516}
+  currentPosition: {x: 0, y: 1, z: -7}
 --- !u!4 &1440353948
 Transform:
   m_ObjectHideFlags: 0

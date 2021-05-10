@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
@@ -40,5 +41,11 @@ public class PlayerRotation : MonoBehaviour
     private void RotatePlayer()
     {
         playerTransform.rotation = Quaternion.Euler(_directionVector);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInput.HorizontalInput -= RotateHorizontally;
+        PlayerInput.VerticalInput -= RotateVertically;
     }
 }

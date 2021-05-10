@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerRayCast : MonoBehaviour
@@ -49,5 +50,13 @@ public class PlayerRayCast : MonoBehaviour
         {
             OnObjectBelowFound(_hitInfo);
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInput.HorizontalInput += HorizontalRayCast;
+        PlayerInput.VerticalInput += VerticalRayCast;
+        PlayerMovement.OnStay += RayCastDown;
+        LogController.OnExit += RayCastDown;
     }
 }

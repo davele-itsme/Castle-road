@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public delegate void StayAction();
     public static event StayAction OnStay;
-    public delegate void ForwardAction(bool start);
+    public delegate void ForwardAction();
     public static event ForwardAction OnForward;
     public bool IsOnWoodLog { get; set; }
     public bool isMoving;
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(MovePlayer());
             if (verValue == 1f && OnForward != null)
             {
-                OnForward(false);
+                OnForward();
             }
         }
     }
@@ -68,5 +69,11 @@ public class PlayerMovement : MonoBehaviour
         {
             OnStay();
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerRayCast.OnHorizontalMove += HorizontallyMove;
+        PlayerRayCast.OnVerticalMove += VerticallyMove;
     }
 }

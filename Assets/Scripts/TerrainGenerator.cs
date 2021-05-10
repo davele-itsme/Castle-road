@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,61 +10,51 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private float spawnDistance;
     [SerializeField] private Transform level;
     
+    private Vector3 _currentPosition;
     private readonly List<GameObject> _terrains = new List<GameObject>();
-    private Vector3 _currentPosition = new Vector3(0, 1, -7);
     private ObjectGenerator _objectGenerator;
-    private bool _generateSameTerrain;
     private int _lastTerrainType;
     private int _terrainCounter = 8;
     
     private void Start()
     {
+        _currentPosition = new Vector3(0, 1, -7);
         PlayerMovement.OnForward += GenerateTerrain;
         _objectGenerator = GetComponent<ObjectGenerator>();
         for (var i = 0; i < maxSpawn; i++)
         {
-            GenerateTerrain(true);    
+            GenerateTerrain();    
         }
         
         _objectGenerator.GenerateCuboid(_terrains.Last());
     }
 
-    public void GenerateTerrain(bool start)
+    public void GenerateTerrain()
     {
-        var distance = 0f;
-        try
+        if (CheckDistanceToLastTerrain())
         {
-            //If _terrains list is empty, it will throw exception
-            distance = _terrains.Last().transform.position.z - playerTransform.position.z;
+            var type = GenerateTerrainType();
+            InstantiateTerrain(type);
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
+    }
 
-        if (!(spawnDistance > distance) && !start) return;
-        int type;
+    private bool CheckDistanceToLastTerrain()
+    {
+        if (_terrains.Count == 0) return true;
+        var distance = _terrains.Last().transform.position.z - playerTransform.position.z;
+        return spawnDistance > distance;
+    }
+
+    private int GenerateTerrainType()
+    {
         if (_terrainCounter == 0)
         {
-            _generateSameTerrain = false;
-        }
-        else
-        {
-            _generateSameTerrain = true;
-        }
-            
-        if (_generateSameTerrain)
-        {
-            type = _lastTerrainType;
-        }
-        else
-        {
-            type = NumberGenerator.GenerateNumberWithExclude(_lastTerrainType);
+            var type = NumberGenerator.GenerateNumberWithExclude(_lastTerrainType);
             _lastTerrainType = type;
             _terrainCounter = NumberGenerator.GenerateTerrainGroupNumber();
+            return type;
         }
-            
-        InstantiateTerrain(type);
+        return _lastTerrainType;
     }
 
     private void InstantiateTerrain(int type)
@@ -73,13 +62,18 @@ public class TerrainGenerator : MonoBehaviour
         var newTerrain = Instantiate(terrainTypes[type], _currentPosition, Quaternion.identity);
         _terrains.Add(newTerrain);
         newTerrain.transform.SetParent(level);
+        DestroyTerrain();
+        _currentPosition.z++;
+        _objectGenerator.GenerateObjects(newTerrain, type);
+    }
+
+    private void DestroyTerrain()
+    {
         if (_terrains.Count > maxSpawn)
         {
             Destroy(_terrains[0]);
             _terrains.RemoveAt(0);
         }
-        _currentPosition.z++;
         _terrainCounter--;
-        _objectGenerator.GenerateObjects(newTerrain, type);
     }
 }
