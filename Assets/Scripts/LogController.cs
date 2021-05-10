@@ -24,7 +24,7 @@ public class LogController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        var playerController = other.GetComponent<PlayerController>();
+        var playerController = other.GetComponent<PlayerMovement>();
         playerController.IsOnWoodLog = true;
         _animator.SetTrigger(OnPlayerInteraction);
     }
@@ -32,8 +32,8 @@ public class LogController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        var playerController = other.GetComponent<PlayerController>();
+        var playerController = other.GetComponent<PlayerMovement>();
         playerController.IsOnWoodLog = false;
-        playerController.IsStaying();
+        // playerController.IsStaying();
     }
 }
