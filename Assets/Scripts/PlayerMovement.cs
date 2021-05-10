@@ -3,14 +3,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public delegate void GravityAction();
-    public static event GravityAction CheckGravity;
+    public delegate void StayAction();
+    public static event StayAction OnStay;
+    public delegate void ForwardAction(bool start);
+    public static event ForwardAction OnForward;
     public bool IsOnWoodLog { get; set; }
     public bool isMoving;
     
     [SerializeField] private TerrainGenerator terrainGenerator;
     [SerializeField] private float movingTime, timeToMove;
-    [SerializeField] private Transform playerTransform;
 
     private Vector3 _startPos, _targetPos;
     private Animator _anim;
@@ -18,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        PlayerRayCast.HorizontalMove += HorizontallyMove;
-        PlayerRayCast.VerticalMove += VerticallyMove;
+        PlayerRayCast.OnHorizontalMove += HorizontallyMove;
+        PlayerRayCast.OnVerticalMove += VerticallyMove;
         _anim = GetComponent<Animator>();
     }
 
@@ -32,9 +33,9 @@ public class PlayerMovement : MonoBehaviour
             isMoving = true; 
             _anim.SetTrigger(Move);
             StartCoroutine(MovePlayer());
-            if (verValue == 1f) 
-            { 
-                // terrainGenerator.GenerateTerrain(false);
+            if (verValue == 1f && OnForward != null)
+            {
+                OnForward(false);
             }
         }
     }
@@ -63,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position = _targetPos;
         yield return new WaitForSeconds(timeToMove);
         isMoving = false;
-        if (CheckGravity != null)
+        if (OnStay != null)
         {
-            CheckGravity();
+            OnStay();
         }
     }
 }

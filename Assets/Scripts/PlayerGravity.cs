@@ -6,7 +6,7 @@ public class PlayerGravity : MonoBehaviour
     private void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
-        PlayerRayCast.ObjectBelowFound += CheckForWater;
+        PlayerRayCast.OnObjectBelowFound += CheckForWater;
     }
 
     private void CheckForWater(RaycastHit hitInfo)

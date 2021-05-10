@@ -10,7 +10,7 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private int maxSpawn;
     [SerializeField] private float spawnDistance;
     [SerializeField] private Transform level;
-
+    
     private readonly List<GameObject> _terrains = new List<GameObject>();
     private Vector3 _currentPosition = new Vector3(0, 1, -7);
     private ObjectGenerator _objectGenerator;
@@ -20,6 +20,7 @@ public class TerrainGenerator : MonoBehaviour
     
     private void Start()
     {
+        PlayerMovement.OnForward += GenerateTerrain;
         _objectGenerator = GetComponent<ObjectGenerator>();
         for (var i = 0; i < maxSpawn; i++)
         {

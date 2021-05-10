@@ -3,8 +3,8 @@ using Random = UnityEngine.Random;
 
 public class LogController : MonoBehaviour
 {
-    public delegate void GravityAction();
-    public static event GravityAction CheckGravity;
+    public delegate void ExitWoodLog();
+    public static event ExitWoodLog OnExit;
     
     private float _speed;
     private Animator _animator;
@@ -37,9 +37,9 @@ public class LogController : MonoBehaviour
         if (!other.gameObject.CompareTag("Player")) return;
         var playerMovement = other.GetComponent<PlayerMovement>();
         playerMovement.IsOnWoodLog = false;
-        if (CheckGravity != null)
+        if (OnExit != null)
         {
-            CheckGravity();
+            OnExit();
         }
     }
 }
