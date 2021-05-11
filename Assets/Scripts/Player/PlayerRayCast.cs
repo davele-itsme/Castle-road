@@ -1,61 +1,62 @@
 using UnityEngine;
 
-public class PlayerRayCast : MonoBehaviour
+namespace Player
 {
-    public delegate void HorizontalAction(float value);
-    public static event HorizontalAction OnHorizontalMove;
+    public class PlayerRayCast : MonoBehaviour
+    {
+        public delegate void HorizontalAction(float value);
+        public static event HorizontalAction OnHorizontalMove;
 
-    public delegate void VerticalAction(float value);
-    public static event VerticalAction OnVerticalMove;
+        public delegate void VerticalAction(float value);
+        public static event VerticalAction OnVerticalMove;
     
-    public delegate void ObjectBelow(RaycastHit hitInfo);
-    public static event ObjectBelow OnObjectBelowFound;
+        public delegate void ObjectBelow(RaycastHit hitInfo);
+        public static event ObjectBelow OnObjectBelowFound;
     
-    private RaycastHit _hitInfo;
-    private PlayerMovement _playerMovement;
-    private void Start()
-    {
-        PlayerInput.HorizontalInput += HorizontalRayCast;
-        PlayerInput.VerticalInput += VerticalRayCast;
-        PlayerMovement.OnStay += RayCastDown;
-        LogController.OnExit += RayCastDown;
-        _playerMovement = GetComponent<PlayerMovement>();
-    }
-
-    private void HorizontalRayCast(float horValue)
-    {
-        var position = transform.position;
-        var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(horValue, 0, 0));
-        if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnHorizontalMove != null)
+        private RaycastHit _hitInfo;
+        private void Start()
         {
-            OnHorizontalMove(horValue);
+            PlayerInput.HorizontalInput += HorizontalRayCast;
+            PlayerInput.VerticalInput += VerticalRayCast;
+            PlayerMovement.OnStay += RayCastDown;
+            LogController.OnExit += RayCastDown;
         }
-    }
 
-    private void VerticalRayCast(float verValue)
-    {
-        var position = transform.position;
-        var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(0, 0, verValue));
-        if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnVerticalMove != null)
+        private void HorizontalRayCast(float horValue)
         {
-            OnVerticalMove(verValue);
+            var position = transform.position;
+            var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(horValue, 0, 0));
+            if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnHorizontalMove != null)
+            {
+                OnHorizontalMove(horValue);
+            }
         }
-    }
 
-    private void RayCastDown()
-    {
-        var ray = new Ray(transform.position, Vector3.down);
-        if (Physics.Raycast(ray, out _hitInfo, 1f) && OnObjectBelowFound != null)
+        private void VerticalRayCast(float verValue)
         {
-            OnObjectBelowFound(_hitInfo);
+            var position = transform.position;
+            var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(0, 0, verValue));
+            if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnVerticalMove != null)
+            {
+                OnVerticalMove(verValue);
+            }
         }
-    }
 
-    private void OnDestroy()
-    {
-        PlayerInput.HorizontalInput += HorizontalRayCast;
-        PlayerInput.VerticalInput += VerticalRayCast;
-        PlayerMovement.OnStay += RayCastDown;
-        LogController.OnExit += RayCastDown;
+        private void RayCastDown()
+        {
+            var ray = new Ray(transform.position, Vector3.down);
+            if (Physics.Raycast(ray, out _hitInfo, 1f) && OnObjectBelowFound != null)
+            {
+                OnObjectBelowFound(_hitInfo);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            PlayerInput.HorizontalInput += HorizontalRayCast;
+            PlayerInput.VerticalInput += VerticalRayCast;
+            PlayerMovement.OnStay += RayCastDown;
+            LogController.OnExit += RayCastDown;
+        }
     }
 }

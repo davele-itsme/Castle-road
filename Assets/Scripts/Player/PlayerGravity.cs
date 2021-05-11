@@ -1,25 +1,28 @@
 using UnityEngine;
 
-public class PlayerGravity : MonoBehaviour
+namespace Player
 {
-    private PlayerMovement _playerMovement;
-    private void Start()
+    public class PlayerGravity : MonoBehaviour
     {
-        _playerMovement = GetComponent<PlayerMovement>();
-        PlayerRayCast.OnObjectBelowFound += CheckForWater;
-    }
-
-    private void CheckForWater(RaycastHit hitInfo)
-    {
-        if (hitInfo.collider.gameObject.CompareTag("River") && !_playerMovement.IsOnWoodLog && !_playerMovement.isMoving)
+        private PlayerMovement _playerMovement;
+        private void Start()
         {
-            FallDown();
+            _playerMovement = GetComponent<PlayerMovement>();
+            PlayerRayCast.OnObjectBelowFound += CheckForWater;
         }
-    }
 
-    private void FallDown()
-    {
-        transform.position += Vector3.down;
-        Destroy(gameObject);
+        private void CheckForWater(RaycastHit hitInfo)
+        {
+            if (hitInfo.collider.gameObject.CompareTag("River") && !_playerMovement.IsOnWoodLog && !_playerMovement.isMoving)
+            {
+                FallDown();
+            }
+        }
+
+        private void FallDown()
+        {
+            transform.position += Vector3.down;
+            Destroy(gameObject);
+        }
     }
 }

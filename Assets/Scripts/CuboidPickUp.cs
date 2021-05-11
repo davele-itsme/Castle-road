@@ -13,7 +13,7 @@ public class CuboidPickUp : MonoBehaviour
     private void OnDestroy()
     {
         var levelGeneration = GameObject.FindWithTag("LevelGeneration");
-        var objectGenerator = levelGeneration.GetComponent<ObjectGenerator>();
+        // var objectGenerator = levelGeneration.GetComponent<>();
         // objectGenerator.GenerateCuboid();
     }
 }

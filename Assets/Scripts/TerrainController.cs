@@ -1,4 +1,5 @@
 using System.Linq;
+using Player;
 using UnityEngine;
 
 //Game manager
@@ -7,8 +8,8 @@ public class TerrainController : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private int maxSpawn;
     [SerializeField] private float spawnDistance;
-    [SerializeField] private LevelData levelData;
-
+    
+    private LevelData _levelData;
     private Vector3 _currentPosition;
     private int _lastTerrainType;
     private int _terrainCounter = 8;
@@ -16,7 +17,7 @@ public class TerrainController : MonoBehaviour
     
     private void Start()
     {
-        levelData = LevelData.Instance;
+        _levelData = LevelData.Instance;
         _currentPosition = new Vector3(0, 1, -7);
         _terrainTypes = gameObject.GetComponents<ITerrain>();
         PlayerMovement.OnForward += ControlTerrain;
@@ -47,15 +48,15 @@ public class TerrainController : MonoBehaviour
     
     private bool CheckDistanceToLastTerrain()
     {
-        if (levelData.terrains.Count == 0) return true;
-        var distance = levelData.terrains.Last().transform.position.z - playerTransform.position.z;
+        if (_levelData.terrains.Count == 0) return true;
+        var distance = _levelData.terrains.Last().transform.position.z - playerTransform.position.z;
         return spawnDistance > distance;
     }
     
     private bool CheckDistanceToBeginning()
     {
-        if (levelData.terrains.Count < maxSpawn) return false;
-        var distance = playerTransform.position.z - levelData.terrains[0].transform.position.z;
+        if (_levelData.terrains.Count < maxSpawn) return false;
+        var distance = playerTransform.position.z - _levelData.terrains[0].transform.position.z;
         return maxSpawn - spawnDistance < distance;
     }
     
@@ -73,10 +74,10 @@ public class TerrainController : MonoBehaviour
     
     private void DestroyTerrain()
     {
-        if (levelData.terrains.Count > maxSpawn)
+        if (_levelData.terrains.Count > maxSpawn)
         {
-            Destroy(levelData.terrains[0]);
-            levelData.terrains.RemoveAt(0);
+            Destroy(_levelData.terrains[0]);
+            _levelData.terrains.RemoveAt(0);
         }
     }
 }

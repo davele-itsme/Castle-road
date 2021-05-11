@@ -1,77 +1,80 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+namespace Player
 {
-    public delegate void StayAction();
-    public static event StayAction OnStay;
-    public delegate void ForwardAction();
-    public static event ForwardAction OnForward;
-    public bool IsOnWoodLog { get; set; }
-    public bool isMoving;
+    public class PlayerMovement : MonoBehaviour
+    {
+        public delegate void StayAction();
+        public static event StayAction OnStay;
+        public delegate void ForwardAction();
+        public static event ForwardAction OnForward;
+        public bool IsOnWoodLog { get; set; }
+        public bool isMoving;
     
-    [SerializeField] private float movingTime, timeToMove;
+        [SerializeField] private float movingTime, timeToMove;
 
-    private Vector3 _startPos, _targetPos;
-    private Animator _anim;
-    private static readonly int Move = Animator.StringToHash("Move");
+        private Vector3 _startPos, _targetPos;
+        private Animator _anim;
+        private static readonly int Move = Animator.StringToHash("Move");
 
-    private void Start()
-    {
-        PlayerRayCast.OnHorizontalMove += HorizontallyMove;
-        PlayerRayCast.OnVerticalMove += VerticallyMove;
-        _anim = GetComponent<Animator>();
-    }
-
-    private void VerticallyMove(float verValue)
-    {
-        if (!isMoving)
+        private void Start()
         {
-            _startPos = transform.position;
-            _targetPos = _startPos + new Vector3(0, 0, verValue);
-            isMoving = true; 
-            _anim.SetTrigger(Move);
-            StartCoroutine(MovePlayer());
-            if (verValue == 1f && OnForward != null)
+            PlayerRayCast.OnHorizontalMove += HorizontallyMove;
+            PlayerRayCast.OnVerticalMove += VerticallyMove;
+            _anim = GetComponent<Animator>();
+        }
+
+        private void VerticallyMove(float verValue)
+        {
+            if (!isMoving)
             {
-                OnForward();
+                _startPos = transform.position;
+                _targetPos = _startPos + new Vector3(0, 0, verValue);
+                isMoving = true; 
+                _anim.SetTrigger(Move);
+                StartCoroutine(MovePlayer());
+                if (verValue == 1f && OnForward != null)
+                {
+                    OnForward();
+                }
             }
         }
-    }
 
-    private void HorizontallyMove(float horValue)
-    {
-        if (!isMoving)
+        private void HorizontallyMove(float horValue)
         {
-            _startPos = transform.position;
-            _targetPos = _startPos + new Vector3(horValue, 0, 0);
-            isMoving = true;
-            _anim.SetTrigger(Move);
-            StartCoroutine(MovePlayer());
+            if (!isMoving)
+            {
+                _startPos = transform.position;
+                _targetPos = _startPos + new Vector3(horValue, 0, 0);
+                isMoving = true;
+                _anim.SetTrigger(Move);
+                StartCoroutine(MovePlayer());
+            }
         }
-    }
     
-    private IEnumerator MovePlayer()
-    {
-        var tInterpolate = 0f;
-        do
+        private IEnumerator MovePlayer()
         {
-            tInterpolate += Time.deltaTime / movingTime;
-            transform.position = Vector3.Lerp(_startPos, _targetPos, tInterpolate);
-            yield return null;
-        } while (Vector3.Distance(_startPos, transform.position) < 1f);
-        transform.position = _targetPos;
-        yield return new WaitForSeconds(timeToMove);
-        isMoving = false;
-        if (OnStay != null)
-        {
-            OnStay();
+            var tInterpolate = 0f;
+            do
+            {
+                tInterpolate += Time.deltaTime / movingTime;
+                transform.position = Vector3.Lerp(_startPos, _targetPos, tInterpolate);
+                yield return null;
+            } while (Vector3.Distance(_startPos, transform.position) < 1f);
+            transform.position = _targetPos;
+            yield return new WaitForSeconds(timeToMove);
+            isMoving = false;
+            if (OnStay != null)
+            {
+                OnStay();
+            }
         }
-    }
 
-    private void OnDestroy()
-    {
-        PlayerRayCast.OnHorizontalMove += HorizontallyMove;
-        PlayerRayCast.OnVerticalMove += VerticallyMove;
+        private void OnDestroy()
+        {
+            PlayerRayCast.OnHorizontalMove += HorizontallyMove;
+            PlayerRayCast.OnVerticalMove += VerticallyMove;
+        }
     }
 }
