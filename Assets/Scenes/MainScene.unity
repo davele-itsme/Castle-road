@@ -359,6 +359,10 @@ GameObject:
   - component: {fileID: 1440353948}
   - component: {fileID: 1440353947}
   - component: {fileID: 1440353949}
+  - component: {fileID: 1440353951}
+  - component: {fileID: 1440353950}
+  - component: {fileID: 1440353952}
+  - component: {fileID: 1440353953}
   m_Layer: 0
   m_Name: Level Generation
   m_TagString: LevelGeneration
@@ -378,14 +382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e109eb7e3fd2041a2cda397b60051a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainTypes:
-  - {fileID: 1420825660351694113, guid: 05ebe93910785444d804a0ba38869868, type: 3}
-  - {fileID: 7868293302363156679, guid: 7bf971c106d22324f99aa964733db8ba, type: 3}
-  - {fileID: 3654037024235212089, guid: 28e6c66ed8a552946a1b428173896488, type: 3}
   playerTransform: {fileID: 8765676044265657394}
   maxSpawn: 20
   spawnDistance: 10
-  level: {fileID: 1088281516}
+  levelData: {fileID: 0}
 --- !u!4 &1440353948
 Transform:
   m_ObjectHideFlags: 0
@@ -418,6 +418,58 @@ MonoBehaviour:
   - {fileID: 2840889749586914063, guid: b92e65b132420364d9ddcc6ab7ef7a94, type: 3}
   woodLogGenerator: {fileID: 8968604127487791178, guid: 16817615499bed341aff05a96e5707af, type: 3}
   cuboid: {fileID: 3517834510374252047, guid: ac39347370aba3a4aaca3274f8c31859, type: 3}
+--- !u!114 &1440353950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440353946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584f9c124e90450d8727bc1e77c861da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riverTerrain: {fileID: 3654037024235212089, guid: 28e6c66ed8a552946a1b428173896488, type: 3}
+--- !u!114 &1440353951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440353946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88811ea3532c4103a7b0559e0e908504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassTerrain: {fileID: 1420825660351694113, guid: 05ebe93910785444d804a0ba38869868, type: 3}
+--- !u!114 &1440353952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440353946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd35447c1b842bdb32be9fd1108f833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadTerrain: {fileID: 7868293302363156679, guid: 7bf971c106d22324f99aa964733db8ba, type: 3}
+--- !u!114 &1440353953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440353946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78462a2e9ee440bb9c50e647d7764652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrains: []
 --- !u!1 &1742425440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3267210425115797562, guid: 18062969c93989e4a817bef939f66a9f, type: 3}

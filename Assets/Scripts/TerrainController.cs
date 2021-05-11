@@ -1,30 +1,24 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 //Game manager
 public class TerrainController : MonoBehaviour
 {
-    public delegate void NewTerrain(GameObject terrain);
-    public static event NewTerrain NewTerrainCreated;
-    
-    public delegate void LastTerrain(GameObject terrain);
-    public static event LastTerrain LastTerrainCreated;
-
-    [SerializeField] private List<GameObject> terrainTypes = new List<GameObject>();
     [SerializeField] private Transform playerTransform;
     [SerializeField] private int maxSpawn;
     [SerializeField] private float spawnDistance;
-    [SerializeField] private Transform level;
-    
+    [SerializeField] private LevelData levelData;
+
     private Vector3 _currentPosition;
-    private readonly List<GameObject> _terrains = new List<GameObject>();
     private int _lastTerrainType;
     private int _terrainCounter = 8;
-
+    private ITerrain[] _terrainTypes;
+    
     private void Start()
     {
+        levelData = LevelData.Instance;
         _currentPosition = new Vector3(0, 1, -7);
+        _terrainTypes = gameObject.GetComponents<ITerrain>();
         PlayerMovement.OnForward += ControlTerrain;
         do
         {
@@ -32,69 +26,57 @@ public class TerrainController : MonoBehaviour
         } while (CheckDistanceToLastTerrain());
     }
 
-    public void ControlTerrain()
+    private void ControlTerrain()
     {
         if (CheckDistanceToLastTerrain())
         {
-            var type = GenerateTerrainType();
+            GenerateTerrainType();
             for (var i = _terrainCounter; i > 0; i--)
             {
-                InstantiateTerrain(type);
+                InstantiateTerrain();
                 _currentPosition.z++;
                 _terrainCounter--;
             }
         }
-
+    
         if (CheckDistanceToBeginning())
         {
             DestroyTerrain();
         }
     }
-
+    
     private bool CheckDistanceToLastTerrain()
     {
-        if (_terrains.Count == 0) return true;
-        var distance = _terrains.Last().transform.position.z - playerTransform.position.z;
+        if (levelData.terrains.Count == 0) return true;
+        var distance = levelData.terrains.Last().transform.position.z - playerTransform.position.z;
         return spawnDistance > distance;
     }
     
     private bool CheckDistanceToBeginning()
     {
-        if (_terrains.Count < maxSpawn) return false;
-        var distance = playerTransform.position.z - _terrains[0].transform.position.z;
+        if (levelData.terrains.Count < maxSpawn) return false;
+        var distance = playerTransform.position.z - levelData.terrains[0].transform.position.z;
         return maxSpawn - spawnDistance < distance;
     }
-
-    private int GenerateTerrainType()
+    
+    private void GenerateTerrainType()
     {
-        if (_terrainCounter == 0)
-        {
-            var type = NumberGenerator.GenerateNumberWithExclude(terrainTypes, _lastTerrainType);
-            _lastTerrainType = type;
-            var numbers = new[] { 1, 2, 2, 2, 3, 3, 3, 4, 4, 5};
-            _terrainCounter = NumberGenerator.GenerateTerrainAmountWithProbability(numbers);
-            return type;
-        }
-        return _lastTerrainType;
+        _lastTerrainType = NumberGenerator.GenerateNumberWithExclude(_terrainTypes.Length, _lastTerrainType);
+        var numbers = new[] { 1, 2, 2, 2, 3, 3, 3, 4, 4, 5}; 
+        _terrainCounter = NumberGenerator.GenerateTerrainAmountWithProbability(numbers);
     }
-
-    private void InstantiateTerrain(int type)
+    
+    private void InstantiateTerrain()
     {
-        var newTerrain = Instantiate(terrainTypes[type], _currentPosition, Quaternion.identity);
-        _terrains.Add(newTerrain);
-        newTerrain.transform.SetParent(level);
-        if (NewTerrainCreated != null)
-        {
-            NewTerrainCreated(newTerrain);
-        }
+       _terrainTypes[_lastTerrainType].InstantiateTerrain(_currentPosition);
     }
-
+    
     private void DestroyTerrain()
     {
-        if (_terrains.Count > maxSpawn)
+        if (levelData.terrains.Count > maxSpawn)
         {
-            Destroy(_terrains[0]);
-            _terrains.RemoveAt(0);
+            Destroy(levelData.terrains[0]);
+            levelData.terrains.RemoveAt(0);
         }
     }
 }

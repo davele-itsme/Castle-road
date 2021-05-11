@@ -9,12 +9,7 @@ public class ObjectGenerator : MonoBehaviour
     [SerializeField] private GameObject woodLogGenerator;
     [SerializeField] private GameObject cuboid;
     private  List<int> _grassObjectsXPosition = new List<int>();
-
-    private void Awake()
-    {
-        TerrainController.NewTerrainCreated += GenerateObjects;
-        TerrainController.LastTerrainCreated += GenerateCuboid;
-    }
+    
     public void GenerateObjects(GameObject newTerrain)
     {
         switch (newTerrain.tag)
