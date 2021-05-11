@@ -14,7 +14,7 @@ public class TerrainController : MonoBehaviour
     private int _lastTerrainType;
     private int _terrainCounter = 8;
     private ITerrain[] _terrainTypes;
-    
+
     private void Start()
     {
         _levelData = LevelData.Instance;
@@ -69,7 +69,7 @@ public class TerrainController : MonoBehaviour
     
     private void InstantiateTerrain()
     {
-       _terrainTypes[_lastTerrainType].InstantiateTerrain(_currentPosition);
+        _terrainTypes[_lastTerrainType].InstantiateTerrain(_currentPosition);
     }
     
     private void DestroyTerrain()

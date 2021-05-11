@@ -4,15 +4,14 @@ using UnityEngine;
 public class GrassTerrain : MonoBehaviour, ITerrain
 {
     [SerializeField] private GameObject grassTerrain;
-    [SerializeField] private List<GameObject> grassObjectTypes;
+    [SerializeField] private List<GameObject> grassObjectTypes = new List<GameObject>();
 
     private List<int> _grassObjectsXPosition;
     private LevelData _levelData;
 
-    private void Start()
+    private void Awake()
     {
         _levelData = LevelData.Instance;
-        grassObjectTypes = new List<GameObject>();
         _grassObjectsXPosition = new List<int>();
     }
 

@@ -358,7 +358,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1440353948}
   - component: {fileID: 1440353947}
-  - component: {fileID: 1440353949}
   - component: {fileID: 1440353951}
   - component: {fileID: 1440353950}
   - component: {fileID: 1440353952}
@@ -385,7 +384,6 @@ MonoBehaviour:
   playerTransform: {fileID: 8765676044265657394}
   maxSpawn: 20
   spawnDistance: 10
-  levelData: {fileID: 0}
 --- !u!4 &1440353948
 Transform:
   m_ObjectHideFlags: 0
@@ -400,24 +398,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1440353949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440353946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 417522bda6ef95c4b9cb2d08b9c0e6f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grassObjectTypes:
-  - {fileID: 7346536146788760423, guid: 9bc4b6980d1a6f643bc2f21feba8dd28, type: 3}
-  - {fileID: 4089679230838217186, guid: 1f9de41f14005a0448cd0a15746f3142, type: 3}
-  - {fileID: 2840889749586914063, guid: b92e65b132420364d9ddcc6ab7ef7a94, type: 3}
-  woodLogGenerator: {fileID: 8968604127487791178, guid: 16817615499bed341aff05a96e5707af, type: 3}
-  cuboid: {fileID: 3517834510374252047, guid: ac39347370aba3a4aaca3274f8c31859, type: 3}
 --- !u!114 &1440353950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riverTerrain: {fileID: 3654037024235212089, guid: 28e6c66ed8a552946a1b428173896488, type: 3}
+  woodLogGenerator: {fileID: 8968604127487791178, guid: 16817615499bed341aff05a96e5707af, type: 3}
 --- !u!114 &1440353951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +425,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grassTerrain: {fileID: 1420825660351694113, guid: 05ebe93910785444d804a0ba38869868, type: 3}
+  grassObjectTypes:
+  - {fileID: 7346536146788760423, guid: 9bc4b6980d1a6f643bc2f21feba8dd28, type: 3}
+  - {fileID: 4089679230838217186, guid: 1f9de41f14005a0448cd0a15746f3142, type: 3}
+  - {fileID: 2840889749586914063, guid: b92e65b132420364d9ddcc6ab7ef7a94, type: 3}
 --- !u!114 &1440353952
 MonoBehaviour:
   m_ObjectHideFlags: 0

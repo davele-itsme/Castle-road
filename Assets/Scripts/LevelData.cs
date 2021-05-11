@@ -3,17 +3,16 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
-       public List<GameObject> terrains;
+       public List<GameObject> terrains = new List<GameObject>();
 
-       public static LevelData Instance { get; private set; }
+       private static LevelData instance;
+       public static LevelData Instance
+       {
+              get { return instance; }
+       }
        
        private void Awake()
        {
-              if (Instance != null && Instance != this)
-              {
-                     Destroy(gameObject);
-              } else {
-                     Instance = this;
-              }
+           instance = this;
        }
 }

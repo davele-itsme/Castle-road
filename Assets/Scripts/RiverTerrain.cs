@@ -6,7 +6,7 @@ public class RiverTerrain : MonoBehaviour, ITerrain
     [SerializeField] private GameObject woodLogGenerator;
     private LevelData _levelData;
     
-    private void Start()
+    private void Awake()
     {
         _levelData = LevelData.Instance;
     }
@@ -15,7 +15,6 @@ public class RiverTerrain : MonoBehaviour, ITerrain
     {
         var newTerrain = Instantiate(riverTerrain, currentPosition, Quaternion.identity);
         newTerrain.transform.SetParent(transform);
-        _levelData.terrains.Add(newTerrain);
         GenerateRiverObjects(newTerrain);
     }
     

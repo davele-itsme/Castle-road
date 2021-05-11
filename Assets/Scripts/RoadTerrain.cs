@@ -5,7 +5,7 @@ public class RoadTerrain : MonoBehaviour, ITerrain
     [SerializeField] private GameObject roadTerrain;
     private LevelData _levelData;
     
-    private void Start()
+    private void Awake()
     {
         _levelData = LevelData.Instance;
     }
