@@ -6,7 +6,8 @@ namespace Level
     {
         [SerializeField] private GameObject roadTerrain;
         [SerializeField] private Transform levelTransform;
-        
+
+        private int count;
         private LevelData _levelData;
     
         private void Awake()

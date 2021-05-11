@@ -8,9 +8,8 @@ namespace Level
         [SerializeField] private GameObject woodLogGenerator;
         [SerializeField] private Transform levelTransform;
 
-        
         private LevelData _levelData;
-    
+
         private void Awake()
         {
             _levelData = LevelData.Instance;
@@ -22,7 +21,6 @@ namespace Level
             newTerrain.transform.SetParent(levelTransform);
             _levelData.terrains.Add(newTerrain);
             GenerateRiverObjects(newTerrain);
-            
         }
     
         private void GenerateRiverObjects(GameObject newTerrain)

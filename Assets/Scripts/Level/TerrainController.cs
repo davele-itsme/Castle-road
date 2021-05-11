@@ -38,7 +38,6 @@ namespace Level
                 {
                     InstantiateTerrain();
                     _currentPosition.z++;
-                    _terrainCounter--;
                 }
             }
     
