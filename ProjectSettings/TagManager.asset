@@ -9,7 +9,6 @@ TagManager:
   - Road
   - PlayerMod
   - WoodLog
-  - LevelGeneration
   - River
   layers:
   - Default
