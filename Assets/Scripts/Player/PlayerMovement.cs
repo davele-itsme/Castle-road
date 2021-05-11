@@ -7,7 +7,7 @@ namespace Player
     {
         public delegate void StayAction();
         public static event StayAction OnStay;
-        public delegate void ForwardAction();
+        public delegate void ForwardAction(bool start);
         public static event ForwardAction OnForward;
         public bool IsOnWoodLog { get; set; }
         public bool isMoving;
@@ -36,7 +36,7 @@ namespace Player
                 StartCoroutine(MovePlayer());
                 if (verValue == 1f && OnForward != null)
                 {
-                    OnForward();
+                    OnForward(false);
                 }
             }
         }
