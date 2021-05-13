@@ -74,7 +74,7 @@ namespace Level
         {
             _lastTerrainType = NumberGenerator.GenerateNumberWithExclude(_terrainTypes.Length, _lastTerrainType);
             var numbers = new[] { 1, 2, 2, 2, 3, 3, 3, 4, 4, 5}; 
-            _terrainCounter = NumberGenerator.GenerateTerrainAmountWithProbability(numbers);
+            _terrainCounter = NumberGenerator.RandomPicker(numbers);
         }
     
         private void InstantiateTerrain()

@@ -14,7 +14,7 @@ public class WoodLogGenerator : MonoBehaviour
     
     private void GenerateWoodLog()
     {
-        _newWoodLog = Instantiate(woodLog, new Vector3(-10, 1, transform.position.z), Quaternion.identity);
+        _newWoodLog = Instantiate(woodLog, transform.position, Quaternion.identity);
         _newWoodLog.transform.SetParent(transform);
     }
 }

@@ -3,7 +3,7 @@ using Random = System.Random;
 
 public static class NumberGenerator
 {
-    public static int GenerateTerrainAmountWithProbability(int[] array)
+    public static int RandomPicker(int[] array)
     {
         var random = new Random();
         var randomIndex = random.Next(0, array.Length);
@@ -19,6 +19,4 @@ public static class NumberGenerator
         var randomIndex = random.Next(0, values.Length);
         return values[randomIndex];
     }
-    
-    
 }
