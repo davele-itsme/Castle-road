@@ -23,6 +23,16 @@ namespace Level
             _currentPosition = new Vector3(0, 1, -7);
             _terrainTypes = gameObject.GetComponents<ITerrain>();
             PlayerMovement.OnForward += ControlTerrain;
+            StartTerrain();
+        }
+
+        //Instantiate grass terrain as safe zone and then other terrains
+        private void StartTerrain()
+        {
+            for (var i = 0; i < _terrainCounter; i++)
+            {
+                InstantiateTerrain();
+            }
             do
             {
                 ControlTerrain();
@@ -37,7 +47,6 @@ namespace Level
                 for (var i = _terrainCounter; i > 0; i--)
                 {
                     InstantiateTerrain();
-                    _currentPosition.z++;
                 }
             }
     
@@ -71,6 +80,7 @@ namespace Level
         private void InstantiateTerrain()
         {
             _terrainTypes[_lastTerrainType].InstantiateTerrain(_currentPosition);
+            _currentPosition.z++;
         }
     
         private void DestroyTerrain()
