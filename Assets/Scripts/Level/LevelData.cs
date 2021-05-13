@@ -5,7 +5,7 @@ namespace Level
 {
     public class LevelData : MonoBehaviour
     {
-        public List<GameObject> terrains = new List<GameObject>();
+        [HideInInspector] public List<GameObject> terrains = new List<GameObject>();
 
         public static LevelData Instance { get; private set; }
 
