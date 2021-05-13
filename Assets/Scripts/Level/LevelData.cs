@@ -7,15 +7,11 @@ namespace Level
     {
         public List<GameObject> terrains = new List<GameObject>();
 
-        private static LevelData instance;
-        public static LevelData Instance
-        {
-            get { return instance; }
-        }
-       
+        public static LevelData Instance { get; private set; }
+
         private void Awake()
         {
-            instance = this;
+            Instance = this;
         }
     }
 }
