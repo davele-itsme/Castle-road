@@ -4,6 +4,9 @@ namespace Player
 {
     public class PlayerGravity : MonoBehaviour
     {
+        public delegate void FallAction(string sound);
+        public static event FallAction OnFall;
+        
         private PlayerMovement _playerMovement;
         private void Start()
         {
@@ -15,14 +18,19 @@ namespace Player
         {
             if (hitInfo.collider.gameObject.CompareTag("River") && !_playerMovement.IsOnWoodLog && !_playerMovement.isMoving)
             {
-                FallDown();
+                FallDownToWater();
             }
         }
 
-        private void FallDown()
+        private void FallDownToWater()
         {
+            if (OnFall != null)
+            {
+                OnFall("Fall in water");
+            }
             transform.position += Vector3.down;
             Destroy(gameObject);
+      
         }
     }
 }

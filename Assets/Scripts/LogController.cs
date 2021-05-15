@@ -4,6 +4,8 @@ using Random = UnityEngine.Random;
 
 public class LogController : MonoBehaviour
 {
+    public delegate void EnterWoodLog(string sound);
+    public static event EnterWoodLog OnEnter;
     public delegate void ExitWoodLog();
     public static event ExitWoodLog OnExit;
     
@@ -31,6 +33,10 @@ public class LogController : MonoBehaviour
         var playerMovement = other.GetComponent<PlayerMovement>();
         playerMovement.IsOnWoodLog = true;
         _animator.SetTrigger(OnPlayerInteraction);
+        if (OnEnter != null)
+        {
+            OnEnter("Wood");
+        }
     }
 
     private void OnTriggerExit(Collider other)

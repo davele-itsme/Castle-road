@@ -9,6 +9,8 @@ namespace Player
         public static event StayAction OnStay;
         public delegate void ForwardAction();
         public static event ForwardAction OnForward;
+        public delegate void MoveAction(string sound);
+        public static event MoveAction OnMove;
         public bool IsOnWoodLog { get; set; }
         public bool isMoving;
     
@@ -33,6 +35,10 @@ namespace Player
                 _targetPos = _startPos + new Vector3(0, 0, verValue);
                 isMoving = true; 
                 _anim.SetTrigger(Move);
+                if (OnMove != null)
+                {
+                    OnMove("Move");
+                }
                 StartCoroutine(MovePlayer());
                 if (verValue == 1f && OnForward != null)
                 {
@@ -49,6 +55,10 @@ namespace Player
                 _targetPos = _startPos + new Vector3(horValue, 0, 0);
                 isMoving = true;
                 _anim.SetTrigger(Move);
+                if (OnMove != null)
+                {
+                    OnMove("Move");
+                }
                 StartCoroutine(MovePlayer());
             }
         }
