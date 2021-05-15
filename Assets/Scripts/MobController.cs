@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MobController : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class MobController : MonoBehaviour
 
     private void Start()
     {
-        _speed = Random.Range(1f, 1.2f);
+        _speed = Random.Range(0.3f, 0.6f);
 
         if (transform.position.x > 0 && transform.position.x < 14)
         {
@@ -38,6 +39,12 @@ public class MobController : MonoBehaviour
         } while (transform.position.x >= -10);
         Destroy(gameObject);
     }
-    
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
