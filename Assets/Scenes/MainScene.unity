@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadTerrain: {fileID: 7868293302363156679, guid: 7bf971c106d22324f99aa964733db8ba, type: 3}
+  roadObjectGenerator: {fileID: 3470713743808889296, guid: fd9e9f003cd9a5547ac89f821d06a0f4, type: 3}
   levelTransform: {fileID: 1088281516}
 --- !u!114 &1440353953
 MonoBehaviour:
@@ -579,7 +580,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1224
+  m_Name: pb_Mesh-1318
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

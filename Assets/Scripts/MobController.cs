@@ -1,19 +1,43 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MobController : MonoBehaviour
 {
-    public bool Run { get; set; } 
+    private float _speed;
+
     private void Start()
     {
-        _speed = Random.Range(1.2f, 1.5f);
-        _animator = GetComponent<Animator>();
+        _speed = Random.Range(1f, 1.2f);
+
+        if (transform.position.x > 0 && transform.position.x < 14)
+        {
+            StartCoroutine(GoLeft());
+        }
+        else
+        {
+            StartCoroutine(GoRight());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator GoRight()
     {
-        
+        do
+        {
+            transform.position += Vector3.right * (Time.deltaTime * _speed);
+            yield return null;
+        } while (transform.position.x <= 10);
+        Destroy(gameObject);
     }
+
+    private IEnumerator GoLeft()
+    {
+        do
+        {
+            transform.position += Vector3.left * (Time.deltaTime * _speed);
+            yield return null;
+        } while (transform.position.x >= -10);
+        Destroy(gameObject);
+    }
+    
+    
 }

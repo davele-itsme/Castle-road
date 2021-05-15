@@ -14,16 +14,12 @@ public class RoadObjectGenerator : MonoBehaviour
     
     private void GenerateMob()
     {
-        _newMob = Instantiate(mob, transform.position, Quaternion.identity);
-        SetMobsSpeed();
+        var rotation = Quaternion.Euler(0, 90, 0);
+        if (transform.position.x == 10)
+        {
+            rotation = Quaternion.Euler(0, 270, 0);
+        }
+        _newMob = Instantiate(mob, transform.position, rotation);
         _newMob.transform.SetParent(transform);
-    }
-
-    private void SetMobsSpeed()
-    {
-        var val = Random.Range(0, 2);
-        var mobController = _newMob.GetComponent<MobController>();
-        var mobControllerRun = val != 0;
-        mobController.Run = mobControllerRun;
     }
 }
