@@ -9,7 +9,7 @@ public class RoadObjectGenerator : MonoBehaviour
     {
         var startDelay = Random.Range(0f, 5f);
         var delay = Random.Range(10f, 14f);
-        InvokeRepeating(nameof(GenerateMob), startDelay, delay);
+        // InvokeRepeating(nameof(GenerateMob), startDelay, delay);
     }
     
     private void GenerateMob()

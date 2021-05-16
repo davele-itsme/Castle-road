@@ -9,11 +9,4 @@ public class CuboidPickUp : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnDestroy()
-    {
-        var levelGeneration = GameObject.FindWithTag("LevelGeneration");
-        // var objectGenerator = levelGeneration.GetComponent<>();
-        // objectGenerator.GenerateCuboid();
-    }
 }

@@ -7,7 +7,8 @@ namespace Level
     {
         [SerializeField] private GameObject grassTerrain;
         [SerializeField] private List<GameObject> grassObjectTypes = new List<GameObject>();
-        [SerializeField] private List<GameObject> specialGrassObjectTypes = new List<GameObject>();
+        [SerializeField] private GameObject cuboid;
+        [SerializeField] private List<GameObject> mobs = new List<GameObject>();
         [SerializeField] private Transform levelTransform;
         private List<int> _grassObjectsXPosition;
         
@@ -37,7 +38,7 @@ namespace Level
                 var randomObj = Random.Range(0, grassObjectTypes.Count);
                 var x = GetUniqueIntFromRange(-6, 7);
                 _grassObjectsXPosition.Add(x);
-                InstantiateObject(grassObjectTypes[randomObj], x);
+                InstantiateObject(grassObjectTypes[randomObj], x, 1.5f, Quaternion.identity);
                 numberOfObjects--;
             } while (numberOfObjects > 0);
         }
@@ -49,9 +50,19 @@ namespace Level
             var possibilityValue = RandomGenerator<bool>.RandomPicker(possibilityArray);
             if (possibilityValue)
             {
-                
-                specialGrassObjectTypes[]
-                // InstantiateObject();
+                var coinPossibility = new[] {false, true};
+                var generateCoin = RandomGenerator<bool>.RandomPicker(coinPossibility);
+                if (generateCoin)
+                {
+                    InstantiateObject(cuboid, x, 2f, Quaternion.Euler(-90, 0, 0));
+                    Debug.Log("CUBOID");
+                }
+                else
+                {
+                    var mob = RandomGenerator<GameObject>.RandomPicker(mobs.ToArray());
+                    InstantiateObject(mob, x, 1.5f, Quaternion.identity);
+                    Debug.Log("MOB");
+                }
             }
         }
 
@@ -64,9 +75,9 @@ namespace Level
             return x;
         }
 
-        private void InstantiateObject(GameObject gameObj, int x)
+        private void InstantiateObject(GameObject gameObj, int x, float y, Quaternion rotation)
         {
-            var newObject =  Instantiate(gameObj, new Vector3(x, 1.5f, _newTerrain.transform.position.z), Quaternion.identity);
+            var newObject =  Instantiate(gameObj, new Vector3(x, y, _newTerrain.transform.position.z), rotation);
             newObject.transform.SetParent(_newTerrain.transform);
         }
     }

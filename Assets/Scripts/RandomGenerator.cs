@@ -6,8 +6,7 @@ public static class RandomGenerator<T>
 {
     public static T RandomPicker(T[] array)
     {
-        var length = array.Length;
-        var randomIndex = Random.Range(0, length);
+        var randomIndex = Random.Range(0, array.Length);
         return array[randomIndex];
     }
     
