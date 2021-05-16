@@ -55,13 +55,11 @@ namespace Level
                 if (generateCoin)
                 {
                     InstantiateObject(cuboid, x, 2f, Quaternion.Euler(-90, 0, 0));
-                    Debug.Log("CUBOID");
                 }
                 else
                 {
                     var mob = RandomGenerator<GameObject>.RandomPicker(mobs.ToArray());
-                    InstantiateObject(mob, x, 1.5f, Quaternion.identity);
-                    Debug.Log("MOB");
+                    InstantiateObject(mob, x, 1f, Quaternion.identity);
                 }
             }
         }
