@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Player;
 using UnityEngine;
@@ -7,6 +8,9 @@ namespace Level
 {
     public class TerrainController : MonoBehaviour
     {
+        public delegate void TerrainCreation();
+        public static event TerrainCreation OnCreated;
+        
         [SerializeField] private Transform playerTransform;
         [SerializeField] private int maxSpawn;
         [SerializeField] private float spawnDistance;
@@ -16,12 +20,14 @@ namespace Level
         private int _lastTerrainType;
         private int _terrainCounter = 8;
         private ITerrain[] _terrainTypes;
+        private IEnumerable<int> _possibleTerrainTypes;
 
         private void Start()
         {
             _levelData = LevelData.Instance;
             _currentPosition = new Vector3(0, 1, -7);
             _terrainTypes = gameObject.GetComponents<ITerrain>();
+            _possibleTerrainTypes = Enumerable.Range(0, _terrainTypes.Length);
             PlayerMovement.OnForward += ControlTerrain;
             StartTerrain();
         }
@@ -48,6 +54,11 @@ namespace Level
                 {
                     InstantiateTerrain();
                 }
+
+                if (OnCreated != null)
+                {
+                    OnCreated();
+                }
             }
     
             if (CheckDistanceToBeginning())
@@ -72,9 +83,9 @@ namespace Level
     
         private void GenerateTerrainType()
         {
-            _lastTerrainType = NumberGenerator.GenerateNumberWithExclude(_terrainTypes.Length, _lastTerrainType);
+            _lastTerrainType = RandomGenerator<int>.GenerateNumberWithExclude(_possibleTerrainTypes, _lastTerrainType);
             var numbers = new[] { 1, 2, 2, 2, 3, 3, 3, 4, 4, 5}; 
-            _terrainCounter = NumberGenerator.RandomPicker(numbers);
+            _terrainCounter = RandomGenerator<int>.RandomPicker(numbers);
         }
     
         private void InstantiateTerrain()

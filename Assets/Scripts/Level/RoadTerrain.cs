@@ -27,7 +27,7 @@ namespace Level
         {
             var z = newTerrain.transform.position.z;
             var side = new[] {-10, 10};
-            var position = NumberGenerator.RandomPicker(side);
+            var position = RandomGenerator<int>.RandomPicker(side);
             var newRoadObjectGenerator = Instantiate(roadObjectGenerator, new Vector3(position, 1.5f, z), Quaternion.identity);
             newRoadObjectGenerator.transform.SetParent(newTerrain.transform);
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4412794243545704702}
   - component: {fileID: 4368619107242662560}
   - component: {fileID: 5215827103470305079}
+  - component: {fileID: 7261263078982207335}
   m_Layer: 0
   m_Name: RightRoad
   m_TagString: Untagged
@@ -95,6 +96,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7261263078982207335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269594073076560921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1095383908236698944
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +124,7 @@ GameObject:
   - component: {fileID: 236980094258729903}
   - component: {fileID: 6546812679053446462}
   - component: {fileID: 4532256928359931889}
+  - component: {fileID: 6534692469999681464}
   m_Layer: 0
   m_Name: LeftRoad
   m_TagString: Untagged
@@ -190,6 +208,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6534692469999681464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095383908236698944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &2624348548464895238
 GameObject:
   m_ObjectHideFlags: 0
