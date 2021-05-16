@@ -5,8 +5,8 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        public delegate void StayAction();
-        public static event StayAction OnStay;
+        public delegate void StopAction();
+        public static event StopAction OnStopMovement;
         public delegate void ForwardAction();
         public static event ForwardAction OnForward;
         public delegate void MoveAction(string sound);
@@ -75,16 +75,17 @@ namespace Player
             transform.position = _targetPos;
             yield return new WaitForSeconds(timeToMove);
             isMoving = false;
-            if (OnStay != null)
+            if (OnStopMovement != null)
             {
-                OnStay();
+                //needs to be called after isMoving otherwise won't fall to water
+                OnStopMovement();
             }
         }
 
         private void OnDestroy()
         {
-            PlayerRayCast.OnHorizontalMove += HorizontallyMove;
-            PlayerRayCast.OnVerticalMove += VerticallyMove;
+            PlayerRayCast.OnHorizontalMove -= HorizontallyMove;
+            PlayerRayCast.OnVerticalMove -= VerticallyMove;
         }
     }
 }

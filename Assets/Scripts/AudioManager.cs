@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
         PlayerMovement.OnMove += Play;
         PlayerGravity.OnFall += PlayFallInWater;
         LogController.OnEnter += Play;
+        BoximonController.OnFollowPlayer += Play;
     }
 
     private void Play(string nameOfSound)

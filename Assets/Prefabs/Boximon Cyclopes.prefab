@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 8706199568817175385}
   - component: {fileID: 2233099352672355273}
   - component: {fileID: -8243305033533659572}
-  - component: {fileID: -6789022180196202244}
+  - component: {fileID: 5545055844740125439}
   m_Layer: 2
   m_Name: Boximon Cyclopes
   m_TagString: Untagged
@@ -180,7 +180,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ab49f3cef633f1d4c84f8c46ec6c0b74, type: 3}
   m_Controller: {fileID: 9100000, guid: cad4cd74f41924a4bbcbe916d2f9cb9b, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -238,20 +238,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b44c86d04ab7642807028b2e0727a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &-6789022180196202244
-CapsuleCollider:
+--- !u!65 &5545055844740125439
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111084942782338}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.7, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 7, y: 1.2, z: 7}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &1159647506406770
 GameObject:
   m_ObjectHideFlags: 0

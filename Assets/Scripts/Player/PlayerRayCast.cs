@@ -18,7 +18,7 @@ namespace Player
         {
             PlayerInput.HorizontalInput += HorizontalRayCast;
             PlayerInput.VerticalInput += VerticalRayCast;
-            PlayerMovement.OnStay += RayCastDown;
+            PlayerMovement.OnStopMovement += RayCastDown;
             LogController.OnExit += RayCastDown;
         }
 
@@ -53,10 +53,10 @@ namespace Player
 
         private void OnDestroy()
         {
-            PlayerInput.HorizontalInput += HorizontalRayCast;
-            PlayerInput.VerticalInput += VerticalRayCast;
-            PlayerMovement.OnStay += RayCastDown;
-            LogController.OnExit += RayCastDown;
+            PlayerInput.HorizontalInput -= HorizontalRayCast;
+            PlayerInput.VerticalInput -= VerticalRayCast;
+            PlayerMovement.OnStopMovement -= RayCastDown;
+            LogController.OnExit -= RayCastDown;
         }
     }
 }
