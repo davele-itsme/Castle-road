@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
         }
 
         PlayerMovement.OnMove += Play;
-        PlayerGravity.OnFall += Play;
+        PlayerGravity.OnFall += PlayFallInWater;
         LogController.OnEnter += Play;
     }
 
@@ -37,5 +37,10 @@ public class AudioManager : MonoBehaviour
         var s = Array.Find(sounds, sound => sound.Name.Equals(nameOfSound));
         if (s == null) return;
         s.Source.Play();
+    }
+
+    private void PlayFallInWater(string nameOfSound, Vector3 position)
+    {
+        Play(nameOfSound);
     }
 }

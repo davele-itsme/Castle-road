@@ -4,7 +4,7 @@ namespace Player
 {
     public class PlayerGravity : MonoBehaviour
     {
-        public delegate void FallAction(string sound);
+        public delegate void FallAction(string action, Vector3 position);
         public static event FallAction OnFall;
         
         private PlayerMovement _playerMovement;
@@ -26,7 +26,7 @@ namespace Player
         {
             if (OnFall != null)
             {
-                OnFall("Fall in water");
+                OnFall("Fall in water", transform.position);
             }
             transform.position += Vector3.down;
             Destroy(gameObject);
