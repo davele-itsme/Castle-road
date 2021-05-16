@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: -7028941623307048959}
   - component: {fileID: -6582469514234342866}
   - component: {fileID: 8203047383208988067}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Boximon Fiery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -963,7 +963,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.5
+  m_Speed: 0.8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -987,7 +987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b44c86d04ab7642807028b2e0727a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3267210425115797562, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
 --- !u!136 &8203047383208988067
 CapsuleCollider:
   m_ObjectHideFlags: 0
