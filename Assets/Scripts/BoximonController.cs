@@ -5,9 +5,6 @@ using UnityEngine.AI;
 
 public class BoximonController : MonoBehaviour
 {
-    public delegate void FollowPlayer(string action);
-    public static event FollowPlayer OnFollowPlayer;
-    
     private GameObject _player;
     private NavMeshAgent _agent;
     private Animator _animator;
@@ -15,12 +12,15 @@ public class BoximonController : MonoBehaviour
     private bool _madeSound;
     private static readonly int Walk = Animator.StringToHash("Walk");
     private static readonly int Attack = Animator.StringToHash("Attack");
+    private AudioManager _audioManager;
 
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        _audioManager = FindObjectOfType<AudioManager>();
+        _audioManager.Play("Boximon sleep");
         PlayerMovement.OnStopMovement += CheckForDistance;
     }
 
@@ -30,9 +30,10 @@ public class BoximonController : MonoBehaviour
         {
             _followPlayer = true;
             _animator.SetBool(Walk, true);
-            if (OnFollowPlayer != null && !_madeSound)
+            if (!_madeSound)
             {
-                OnFollowPlayer("Boximon");
+                _audioManager.Play("Boximon grunt");
+                _audioManager.Stop("Boximon sleep");
                 _madeSound = true;
             }
             StartCoroutine(FollorPlayer());
@@ -55,6 +56,7 @@ public class BoximonController : MonoBehaviour
         {
             _followPlayer = false;
             _animator.SetTrigger(Attack);
+            _audioManager.Play("Boximon punch");
             StartCoroutine(AttackPlayer(0.2f));
         }
     }

@@ -107,7 +107,7 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.5
-    agentHeight: 2
+    agentHeight: 1.2
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
@@ -5401,11 +5401,23 @@ MonoBehaviour:
     Pitch: 1
     Loop: 0
     Source: {fileID: 0}
-  - Clip: {fileID: 0}
-    Name: 
-    Volume: 0
-    Pitch: 0
+  - Clip: {fileID: 8300000, guid: afcfcc3c0da506c4ca6d804c4fb28c28, type: 3}
+    Name: Boximon grunt
+    Volume: 0.5
+    Pitch: 1
     Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 56b4fb9e594eda44b9306919b89b9289, type: 3}
+    Name: Boximon punch
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 05f96aa4e18d8294b9ff01f07250dc1b, type: 3}
+    Name: Boximon sleep
+    Volume: 0.1
+    Pitch: 1
+    Loop: 1
     Source: {fileID: 0}
 --- !u!4 &1685455669
 Transform:
