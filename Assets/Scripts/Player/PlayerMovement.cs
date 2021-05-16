@@ -9,8 +9,7 @@ namespace Player
         public static event StopAction OnStopMovement;
         public delegate void ForwardAction();
         public static event ForwardAction OnForward;
-        public delegate void MoveAction(string sound);
-        public static event MoveAction OnMove;
+        
         public bool IsOnWoodLog { get; set; }
         public bool isMoving;
     
@@ -18,6 +17,7 @@ namespace Player
 
         private Vector3 _startPos, _targetPos;
         private Animator _anim;
+        private AudioManager _audioManager;
         private static readonly int Move = Animator.StringToHash("Move");
 
         private void Start()
@@ -25,6 +25,7 @@ namespace Player
             PlayerRayCast.OnHorizontalMove += HorizontallyMove;
             PlayerRayCast.OnVerticalMove += VerticallyMove;
             _anim = GetComponent<Animator>();
+            _audioManager = FindObjectOfType<AudioManager>();
         }
 
         private void VerticallyMove(float verValue)
@@ -35,10 +36,7 @@ namespace Player
                 _targetPos = _startPos + new Vector3(0, 0, verValue);
                 isMoving = true; 
                 _anim.SetTrigger(Move);
-                if (OnMove != null)
-                {
-                    OnMove("Move");
-                }
+                _audioManager.Play("Move");
                 StartCoroutine(MovePlayer());
                 if (verValue == 1f && OnForward != null)
                 {
@@ -55,10 +53,7 @@ namespace Player
                 _targetPos = _startPos + new Vector3(horValue, 0, 0);
                 isMoving = true;
                 _anim.SetTrigger(Move);
-                if (OnMove != null)
-                {
-                    OnMove("Move");
-                }
+                _audioManager.Play("Move");
                 StartCoroutine(MovePlayer());
             }
         }

@@ -4,19 +4,19 @@ using Random = UnityEngine.Random;
 
 public class LogController : MonoBehaviour
 {
-    public delegate void EnterWoodLog(string sound);
-    public static event EnterWoodLog OnEnter;
     public delegate void ExitWoodLog();
     public static event ExitWoodLog OnExit;
     
     private float _speed;
     private Animator _animator;
     private static readonly int OnPlayerInteraction = Animator.StringToHash("OnPlayerInteraction");
+    private AudioManager _audioManager;
 
     private void Start()
     {
         _speed = Random.Range(1.2f, 1.5f);
         _animator = GetComponent<Animator>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
     private void Update()
     {
@@ -33,10 +33,7 @@ public class LogController : MonoBehaviour
         var playerMovement = other.GetComponent<PlayerMovement>();
         playerMovement.IsOnWoodLog = true;
         _animator.SetTrigger(OnPlayerInteraction);
-        if (OnEnter != null)
-        {
-            OnEnter("Wood");
-        }
+        _audioManager.Play("Wood");
     }
 
     private void OnTriggerExit(Collider other)

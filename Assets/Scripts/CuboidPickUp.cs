@@ -6,6 +6,7 @@ public class CuboidPickUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("Pickup cuboid");
             Destroy(gameObject);
         }
     }

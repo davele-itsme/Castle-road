@@ -5409,8 +5409,8 @@ MonoBehaviour:
     Source: {fileID: 0}
   - Clip: {fileID: 8300000, guid: 56b4fb9e594eda44b9306919b89b9289, type: 3}
     Name: Boximon punch
-    Volume: 0.5
-    Pitch: 1
+    Volume: 0.15
+    Pitch: 1.5
     Loop: 0
     Source: {fileID: 0}
   - Clip: {fileID: 8300000, guid: 05f96aa4e18d8294b9ff01f07250dc1b, type: 3}
@@ -5418,6 +5418,12 @@ MonoBehaviour:
     Volume: 0.1
     Pitch: 1
     Loop: 1
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 30d0754952737314ba365b67bf987491, type: 3}
+    Name: Pickup cuboid
+    Volume: 0.1
+    Pitch: 1
+    Loop: 0
     Source: {fileID: 0}
 --- !u!4 &1685455669
 Transform:

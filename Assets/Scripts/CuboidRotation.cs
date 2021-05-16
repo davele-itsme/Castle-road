@@ -23,18 +23,18 @@ public class CuboidRotation : MonoBehaviour
         var moveDir = new Vector3(0.0f, 0.0f, floatSpeed);
         transform.Translate(moveDir);
 
-        if (_goingUp && _floatTimer >= floatRate)
+        switch (_goingUp)
         {
-            _goingUp = false;
-            _floatTimer = 0;
-            floatSpeed = -floatSpeed;
-        }
-
-        else if(!_goingUp && _floatTimer >= floatRate)
-        {
-            _goingUp = true;
-            _floatTimer = 0;
-            floatSpeed = +floatSpeed;
+            case true when _floatTimer >= floatRate:
+                _goingUp = false;
+                _floatTimer = 0;
+                floatSpeed = -floatSpeed;
+                break;
+            case false when _floatTimer >= floatRate:
+                _goingUp = true;
+                _floatTimer = 0;
+                floatSpeed = +floatSpeed;
+                break;
         }
     }
 }
