@@ -7,14 +7,17 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject pauseButton;
+    private AudioManager _audioManager;
     
     private void Awake()
     {
         PlayerInput.CancelInput += SwitchPause;
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     public void SwitchPause()
     {
+        PlaySound();
         if (GameIsPaused)
         {
             OnResume();
@@ -43,16 +46,12 @@ public class PauseMenu : MonoBehaviour
 
     public void OnHome()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1); 
-    }
-
-    public void OnRestart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void PlaySound()
     {
-        FindObjectOfType<AudioManager>().Play("Select");
+        _audioManager.Play("Select");
     }
 }
