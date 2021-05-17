@@ -4926,7 +4926,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &390407777
 MonoBehaviour:
@@ -5158,7 +5158,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1256185228 stripped
 Transform:
@@ -5353,92 +5353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrains: []
---- !u!1 &1685455667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1685455669}
-  - component: {fileID: 1685455668}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1685455668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685455667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a65660a07d7bad47905cf424ccfde1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - Clip: {fileID: 8300000, guid: c8fca063acd2e304c946d6fc87b741eb, type: 3}
-    Name: Move
-    Volume: 0.4
-    Pitch: 1.8
-    Loop: 0
-    Source: {fileID: 0}
-  - Clip: {fileID: 8300000, guid: f9c87a6411648624699a5e9216035573, type: 3}
-    Name: Wood
-    Volume: 0.3
-    Pitch: 1.5
-    Loop: 0
-    Source: {fileID: 0}
-  - Clip: {fileID: 8300000, guid: 9d99125b6421aa449b9c085746c92c79, type: 3}
-    Name: Fall in water
-    Volume: 0.5
-    Pitch: 1
-    Loop: 0
-    Source: {fileID: 0}
-  - Clip: {fileID: 8300000, guid: afcfcc3c0da506c4ca6d804c4fb28c28, type: 3}
-    Name: Boximon grunt
-    Volume: 0.5
-    Pitch: 1
-    Loop: 0
-    Source: {fileID: 0}
-  - Clip: {fileID: 8300000, guid: 56b4fb9e594eda44b9306919b89b9289, type: 3}
-    Name: Boximon punch
-    Volume: 0.15
-    Pitch: 1.5
-    Loop: 0
-    Source: {fileID: 0}
-  - Clip: {fileID: 8300000, guid: 05f96aa4e18d8294b9ff01f07250dc1b, type: 3}
-    Name: Boximon sleep
-    Volume: 0.1
-    Pitch: 1
-    Loop: 1
-    Source: {fileID: 0}
-  - Clip: {fileID: 8300000, guid: 30d0754952737314ba365b67bf987491, type: 3}
-    Name: Pickup cuboid
-    Volume: 0.1
-    Pitch: 1
-    Loop: 0
-    Source: {fileID: 0}
---- !u!4 &1685455669
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685455667}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06508562, y: 2.4558892, z: -0.08461532}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1742425440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3267210425115797562, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
@@ -5751,7 +5665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3269381390872657198, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3269381390872657198, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
       propertyPath: m_LocalPosition.x

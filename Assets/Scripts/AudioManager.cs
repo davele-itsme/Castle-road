@@ -1,9 +1,11 @@
 using System;
-using Player;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public AudioMixerGroup audioMixerSound;
+    public AudioMixerGroup audioMixerMusic;
     [SerializeField] private Sound[] sounds;
     public static AudioManager Instance;
     private void Awake()
@@ -25,7 +27,10 @@ public class AudioManager : MonoBehaviour
             sound.Source.volume = sound.Volume;
             sound.Source.pitch = sound.Pitch;
             sound.Source.loop = sound.Loop;
+            sound.Source.outputAudioMixerGroup = audioMixerSound;
         }
+        var music = Array.Find(sounds, sound => sound.Name.Equals("Game menu music"));
+        music.Source.outputAudioMixerGroup = audioMixerMusic;
     }
 
     public void Play(string nameOfSound)
