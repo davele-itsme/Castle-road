@@ -5,12 +5,14 @@ namespace Player
     public class PlayerInput : MonoBehaviour
     {
         public delegate void HorInput(float value);
-
         public static event HorInput HorizontalInput;
 
         public delegate void VerInput(float value);
-
         public static event VerInput VerticalInput;
+        
+        public delegate void CanInput();
+        public static event CanInput CancelInput;
+        
         private void Update()
         {
             var horValue = Input.GetAxisRaw("Horizontal");
@@ -22,6 +24,11 @@ namespace Player
             else if (verValue != 0 && VerticalInput != null)
             {
                 VerticalInput(verValue);
+            }
+            
+            if (Input.GetButtonDown("Cancel") && CancelInput != null)
+            {
+                CancelInput();
             }
         }
     }
