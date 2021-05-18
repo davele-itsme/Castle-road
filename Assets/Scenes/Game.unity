@@ -8409,6 +8409,25 @@ MonoBehaviour:
     Pitch: 1
     Loop: 1
     Source: {fileID: 0}
+  greetings:
+  - Clip: {fileID: 8300000, guid: 38dac3254bd1ced43b25fe632a25d20f, type: 3}
+    Name: Greeting1
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 325b7baa78de43b4e98e97009330e136, type: 3}
+    Name: Greeting2
+    Volume: 0.5
+    Pitch: 0.82
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: de7246977ec594a40ad79b4c78286857, type: 3}
+    Name: Greeting3
+    Volume: 0.5
+    Pitch: 0.92
+    Loop: 0
+    Source: {fileID: 0}
 --- !u!4 &1476220769
 Transform:
   m_ObjectHideFlags: 0

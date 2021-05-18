@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -7,7 +8,9 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup audioMixerSound;
     public AudioMixerGroup audioMixerMusic;
     [SerializeField] private Sound[] sounds;
+    [SerializeField] private Sound[] greetings;
     public static AudioManager Instance;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -20,7 +23,15 @@ public class AudioManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
-        foreach (var sound in sounds)
+        MapSounds(sounds);
+        MapSounds(greetings);
+        var music = Array.Find(sounds, sound => sound.Name.Equals("Game menu music"));
+        music.Source.outputAudioMixerGroup = audioMixerMusic;
+    }
+
+    private void MapSounds(IEnumerable<Sound> groupOfSounds)
+    {
+        foreach (var sound in groupOfSounds)
         {
             sound.Source = gameObject.AddComponent<AudioSource>();
             sound.Source.clip = sound.Clip;
@@ -29,8 +40,6 @@ public class AudioManager : MonoBehaviour
             sound.Source.loop = sound.Loop;
             sound.Source.outputAudioMixerGroup = audioMixerSound;
         }
-        var music = Array.Find(sounds, sound => sound.Name.Equals("Game menu music"));
-        music.Source.outputAudioMixerGroup = audioMixerMusic;
     }
 
     public void Play(string nameOfSound)
@@ -45,5 +54,10 @@ public class AudioManager : MonoBehaviour
         var s = Array.Find(sounds, sound => sound.Name.Equals(nameOfSound));
         if (s == null) return;
         s.Source.Stop();
+    }
+
+    public void PlayRandomGreeting()
+    {
+        RandomGenerator<Sound>.RandomPicker(greetings).Source.Play();
     }
 }

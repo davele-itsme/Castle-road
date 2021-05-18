@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Level
 {
@@ -7,14 +8,16 @@ namespace Level
         [SerializeField] private GameObject roadTerrain;
         [SerializeField] private GameObject roadObjectGenerator;
         [SerializeField] private Transform levelTransform;
-        
+        private AudioManager _audioManager;
         private LevelData _levelData;
     
         private void Awake()
         {
             _levelData = LevelData.Instance;
+            _audioManager = FindObjectOfType<AudioManager>();
+            StartCoroutine(PlaySound());
         }
-    
+
         public void InstantiateTerrain(Vector3 currentPosition)
         {
             var newTerrain = Instantiate(roadTerrain, currentPosition, Quaternion.identity);
@@ -30,6 +33,16 @@ namespace Level
             var position = RandomGenerator<int>.RandomPicker(side);
             var newRoadObjectGenerator = Instantiate(roadObjectGenerator, new Vector3(position, 1.35f, z), Quaternion.identity);
             newRoadObjectGenerator.transform.SetParent(newTerrain.transform);
+        }
+
+        private IEnumerator PlaySound()
+        {
+            while (true)
+            {
+                var time = Random.Range(10f, 20f);
+                yield return new WaitForSeconds(time);
+                _audioManager.PlayRandomGreeting();
+            }
         }
     }
 }
