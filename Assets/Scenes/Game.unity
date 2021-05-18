@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8118b4110dcc70a40ab7d5bf42f7115b, type: 2}
   m_LightingSettings: {fileID: 1788934374}
 --- !u!196 &4
 NavMeshSettings:
@@ -7068,6 +7068,106 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrains: []
+--- !u!1 &1476220767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476220769}
+  - component: {fileID: 1476220768}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1476220768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476220767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a65660a07d7bad47905cf424ccfde1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixerSound: {fileID: 262479390907622418, guid: 36b4254a2937caa43a1665be50bc01bd, type: 2}
+  audioMixerMusic: {fileID: 24300002, guid: 36b4254a2937caa43a1665be50bc01bd, type: 2}
+  sounds:
+  - Clip: {fileID: 8300000, guid: c8fca063acd2e304c946d6fc87b741eb, type: 3}
+    Name: Move
+    Volume: 0.4
+    Pitch: 1.8
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: f9c87a6411648624699a5e9216035573, type: 3}
+    Name: Wood
+    Volume: 0.3
+    Pitch: 1.5
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 9d99125b6421aa449b9c085746c92c79, type: 3}
+    Name: Fall in water
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: afcfcc3c0da506c4ca6d804c4fb28c28, type: 3}
+    Name: Boximon grunt
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 56b4fb9e594eda44b9306919b89b9289, type: 3}
+    Name: Boximon punch
+    Volume: 0.15
+    Pitch: 1.5
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 05f96aa4e18d8294b9ff01f07250dc1b, type: 3}
+    Name: Boximon sleep
+    Volume: 0.25
+    Pitch: 1
+    Loop: 1
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 30d0754952737314ba365b67bf987491, type: 3}
+    Name: Pickup cuboid
+    Volume: 0.1
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: 490e90d5cb44a854680abb19d2976775, type: 3}
+    Name: Select
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Clip: {fileID: 8300000, guid: a70fef508b481db4cb535582a9cf0514, type: 3}
+    Name: Game menu music
+    Volume: 0.1
+    Pitch: 1
+    Loop: 1
+    Source: {fileID: 0}
+--- !u!4 &1476220769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476220767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06508562, y: 2.4558892, z: -0.08461532}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1484328400
 GameObject:
   m_ObjectHideFlags: 0

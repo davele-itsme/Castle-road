@@ -29,7 +29,7 @@ namespace Player
                 OnFall(transform.position);
             }
             transform.position += Vector3.down;
-            Destroy(gameObject);
+            // Destroy(gameObject);
       
         }
     }

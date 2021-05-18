@@ -14,7 +14,7 @@ public class BoximonController : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
     private AudioManager _audioManager;
 
-    private void Start()
+    private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -64,6 +64,6 @@ public class BoximonController : MonoBehaviour
     private IEnumerator AttackPlayer(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        Destroy(_player);
+        // Destroy(_player);
     }
 }

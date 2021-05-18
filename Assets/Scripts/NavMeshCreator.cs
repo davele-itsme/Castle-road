@@ -17,4 +17,9 @@ public class NavMeshCreator : MonoBehaviour
     {
         _navMeshSurface.BuildNavMesh();
     }
+
+    private void OnDestroy()
+    {
+        NavMesh.RemoveAllNavMeshData();
+    }
 }

@@ -51,12 +51,12 @@ namespace Player
             }
         }
 
-        private void OnDestroy()
-        {
-            PlayerInput.HorizontalInput -= HorizontalRayCast;
-            PlayerInput.VerticalInput -= VerticalRayCast;
-            PlayerMovement.OnStopMovement -= RayCastDown;
-            LogController.OnExit -= RayCastDown;
-        }
+        // private void OnDestroy()
+        // {
+        //     PlayerInput.HorizontalInput -= HorizontalRayCast;
+        //     PlayerInput.VerticalInput -= VerticalRayCast;
+        //     PlayerMovement.OnStopMovement -= RayCastDown;
+        //     LogController.OnExit -= RayCastDown;
+        // }
     }
 }
