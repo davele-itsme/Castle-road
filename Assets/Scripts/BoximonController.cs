@@ -8,7 +8,7 @@ public class BoximonController : MonoBehaviour
     private GameObject _player;
     private NavMeshAgent _agent;
     private Animator _animator;
-    private bool _followPlayer;
+    private IEnumerator _followCoroutine;
     private bool _madeSound;
     private static readonly int Walk = Animator.StringToHash("Walk");
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -28,7 +28,6 @@ public class BoximonController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _followPlayer = true;
             _animator.SetBool(Walk, true);
             if (!_madeSound)
             {
@@ -36,31 +35,32 @@ public class BoximonController : MonoBehaviour
                 _audioManager.Stop("Boximon sleep");
                 _madeSound = true;
             }
-            StartCoroutine(FollorPlayer());
+            _followCoroutine = FollowPlayer();
+            StartCoroutine(FollowPlayer());
         }
     }
 
-    private IEnumerator FollorPlayer()
+    private IEnumerator FollowPlayer()
     {
-        do
+        while (true)
         {
             _agent.SetDestination(_player.transform.position);
             CheckForDistance();
             yield return new WaitForSeconds(0.5f);
-        } while (_followPlayer);
+        }
     }
-    
+
     private void CheckForDistance()
     {
         if (Vector3.Distance(transform.position, _player.transform.position) < 1f)
-            {
-                _followPlayer = false;
-                _animator.SetTrigger(Attack);
-                _audioManager.Play("Boximon punch");
-                StartCoroutine(AttackPlayer(0.2f));
-            }
+        {
+            StopCoroutine(_followCoroutine);
+            _animator.SetTrigger(Attack); 
+            _audioManager.Play("Boximon punch"); 
+            StartCoroutine(AttackPlayer(0.2f));
+        }
     }
-
+    
     private IEnumerator AttackPlayer(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);

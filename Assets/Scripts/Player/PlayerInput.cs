@@ -12,8 +12,19 @@ namespace Player
         
         public delegate void CanInput();
         public static event CanInput CancelInput;
-        
+
         private void Update()
+        {
+            GetAxisRaw();
+            
+            if (Input.GetButtonDown("Cancel") && CancelInput != null)
+            {
+                CancelInput();
+            }
+            
+        }
+
+        private void GetAxisRaw()
         {
             var horValue = Input.GetAxisRaw("Horizontal");
             var verValue = Input.GetAxisRaw("Vertical");
@@ -24,11 +35,6 @@ namespace Player
             else if (verValue != 0 && VerticalInput != null)
             {
                 VerticalInput(verValue);
-            }
-            
-            if (Input.GetButtonDown("Cancel") && CancelInput != null)
-            {
-                CancelInput();
             }
         }
     }
