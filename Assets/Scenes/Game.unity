@@ -9284,7 +9284,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-380762
+  m_Name: pb_Mesh-2460766
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9629,7 +9629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3265561213547706073, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
       propertyPath: movingTime
-      value: 0.15
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265561213547706073, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
+      propertyPath: timeToMove
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3265561213547706073, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
       propertyPath: terrainGenerator
