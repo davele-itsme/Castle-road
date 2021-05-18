@@ -1,12 +1,9 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-    [SerializeField] private Slider soundSlider;
-    [SerializeField] private Slider musicSlider;
 
     public void OnEnable()
     {

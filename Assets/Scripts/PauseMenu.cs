@@ -4,9 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused;
+    public bool gameIsPaused;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject gameOverMenu;
     private AudioManager _audioManager;
     
     private void Awake()
@@ -18,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     public void SwitchPause()
     {
         PlaySound();
-        if (GameIsPaused)
+        if (gameIsPaused)
         {
             OnResume();
         }
@@ -32,7 +33,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        gameIsPaused = false;
         pauseButton.SetActive(true);
     }
 
@@ -40,7 +41,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        GameIsPaused = true;
+        gameIsPaused = true;
         pauseButton.SetActive(false);
     }
 
@@ -59,5 +60,17 @@ public class PauseMenu : MonoBehaviour
     public void PlaySound()
     {
         _audioManager.Play("Select");
+    }
+
+    public void Accept()
+    {
+        if (gameIsPaused)
+        {
+            pauseMenuUI.SetActive(true);
+        }
+        else
+        {
+            gameOverMenu.SetActive(true);
+        }
     }
 }
