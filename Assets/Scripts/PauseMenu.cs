@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private GameObject scoreText;
     private AudioManager _audioManager;
     
     private void Awake()
@@ -35,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         gameIsPaused = false;
         pauseButton.SetActive(true);
+        scoreText.SetActive(true);
     }
 
     public void OnPause()
@@ -43,6 +45,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         gameIsPaused = true;
         pauseButton.SetActive(false);
+        scoreText.SetActive(false);
     }
 
     public void OnHome()
