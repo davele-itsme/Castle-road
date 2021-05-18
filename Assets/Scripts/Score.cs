@@ -3,19 +3,34 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
+    [HideInInspector]
+    public int score;
+    
     private TextMeshProUGUI _scoreText;
-    private int _score;
-    private void Start()
+    public static Score Instance;
+
+    private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
         CuboidPickUp.CuboidPickedUp += UpdateScore;
         _scoreText = gameObject.GetComponent<TextMeshProUGUI>();
-        _score = 0;
+        score = 0;
+   
     }
-
+    
     private void UpdateScore()
     {
-        _score++;
-        _scoreText.text = _score.ToString();
+        score++;
+        _scoreText.text = score.ToString();
     }
 
     private void OnDestroy()

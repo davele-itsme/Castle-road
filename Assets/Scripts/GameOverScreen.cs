@@ -1,21 +1,31 @@
 using Player;
+using TMPro;
 using UnityEngine;
 
-public class UIController : MonoBehaviour
+public class GameOverScreen : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject pauseButton;
-    [SerializeField] private GameObject scoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreText;
+
+    private Score _score;
     
     private void Start()
     {
         PlayerDeath.PlayerDied += GameOver;
+        _score = Score.Instance;
     }
 
     private void GameOver()
     {
+        var bestScore = PlayerPrefs.GetInt("BestScore");
+        if (_score.score > bestScore)
+        {
+            PlayerPrefs.SetInt("BestScore", _score.score);
+        }
+        
         gameOverMenu.SetActive(true);
-        scoreText.SetActive(false);
+        bestScoreText.text = "Best score " + PlayerPrefs.GetInt("BestScore");
         pauseButton.SetActive(false);
     }
     
