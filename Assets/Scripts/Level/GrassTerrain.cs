@@ -46,7 +46,7 @@ namespace Level
         private void GenerateSpecialGrassObjects()
         {
             var x = GetUniqueIntFromRange(-6, 7);
-            var possibilityArray = new []{false, false, false, false, false, false, false, false, false, true};
+            var possibilityArray = new []{false, false, false, false, false, false, false, true};
             var possibilityValue = RandomGenerator<bool>.RandomPicker(possibilityArray);
             if (possibilityValue)
             {

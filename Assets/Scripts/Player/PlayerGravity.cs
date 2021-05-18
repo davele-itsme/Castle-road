@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Player
@@ -29,8 +30,12 @@ namespace Player
                 OnFall(transform.position);
             }
             transform.position += Vector3.down;
-            // Destroy(gameObject);
-      
+            Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            PlayerRayCast.OnObjectBelowFound -= CheckForWater;
         }
     }
 }

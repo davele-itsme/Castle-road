@@ -77,10 +77,10 @@ namespace Player
             }
         }
 
-        // private void OnDestroy()
-        // {
-        //     PlayerRayCast.OnHorizontalMove -= HorizontallyMove;
-        //     PlayerRayCast.OnVerticalMove -= VerticallyMove;
-        // }
+        private void OnDestroy()
+        {
+            PlayerRayCast.OnHorizontalMove -= HorizontallyMove;
+            PlayerRayCast.OnVerticalMove -= VerticallyMove;
+        }
     }
 }

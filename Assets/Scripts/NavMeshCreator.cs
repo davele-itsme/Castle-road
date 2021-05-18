@@ -20,6 +20,6 @@ public class NavMeshCreator : MonoBehaviour
 
     private void OnDestroy()
     {
-        NavMesh.RemoveAllNavMeshData();
+        TerrainController.OnCreated -= UpdateNavMesh;
     }
 }

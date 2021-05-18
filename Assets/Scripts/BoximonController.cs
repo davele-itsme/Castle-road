@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Player;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class BoximonController : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
     private AudioManager _audioManager;
 
-    private void Awake()
+    private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -53,17 +54,22 @@ public class BoximonController : MonoBehaviour
     private void CheckForDistance()
     {
         if (Vector3.Distance(transform.position, _player.transform.position) < 1f)
-        {
-            _followPlayer = false;
-            _animator.SetTrigger(Attack);
-            _audioManager.Play("Boximon punch");
-            StartCoroutine(AttackPlayer(0.2f));
-        }
+            {
+                _followPlayer = false;
+                _animator.SetTrigger(Attack);
+                _audioManager.Play("Boximon punch");
+                StartCoroutine(AttackPlayer(0.2f));
+            }
     }
 
     private IEnumerator AttackPlayer(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        // Destroy(_player);
+        Destroy(_player);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerMovement.OnStopMovement -= CheckForDistance;
     }
 }

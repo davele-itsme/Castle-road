@@ -12,33 +12,51 @@ namespace Player
     
         public delegate void ObjectBelow(RaycastHit hitInfo);
         public static event ObjectBelow OnObjectBelowFound;
-    
+
+        private bool _rayCastDone;
         private RaycastHit _hitInfo;
         private void Start()
         {
             PlayerInput.HorizontalInput += HorizontalRayCast;
             PlayerInput.VerticalInput += VerticalRayCast;
             PlayerMovement.OnStopMovement += RayCastDown;
+            PlayerMovement.OnStopMovement += RayCastEnabled;
             LogController.OnExit += RayCastDown;
         }
 
         private void HorizontalRayCast(float horValue)
         {
-            var position = transform.position;
-            var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(horValue, 0, 0));
-            if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnHorizontalMove != null)
+            if (!_rayCastDone)
             {
-                OnHorizontalMove(horValue);
+                var position = transform.position;
+                _rayCastDone = true;
+                var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(horValue, 0, 0));
+                if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnHorizontalMove != null)
+                {
+                    OnHorizontalMove(horValue);
+                }
+                else
+                {
+                    _rayCastDone = false;
+                }
             }
         }
 
         private void VerticalRayCast(float verValue)
         {
-            var position = transform.position;
-            var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(0, 0, verValue));
-            if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnVerticalMove != null)
+            if (!_rayCastDone)
             {
-                OnVerticalMove(verValue);
+                var position = transform.position;
+                _rayCastDone = true;
+                var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(0, 0, verValue));
+                if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnVerticalMove != null)
+                {
+                    OnVerticalMove(verValue);
+                }
+                else
+                {
+                    _rayCastDone = false;
+                }
             }
         }
 
@@ -51,12 +69,18 @@ namespace Player
             }
         }
 
-        // private void OnDestroy()
-        // {
-        //     PlayerInput.HorizontalInput -= HorizontalRayCast;
-        //     PlayerInput.VerticalInput -= VerticalRayCast;
-        //     PlayerMovement.OnStopMovement -= RayCastDown;
-        //     LogController.OnExit -= RayCastDown;
-        // }
+        private void RayCastEnabled()
+        {
+            _rayCastDone = false;
+        }
+
+        private void OnDestroy()
+        {
+            PlayerInput.HorizontalInput -= HorizontalRayCast;
+            PlayerInput.VerticalInput -= VerticalRayCast;
+            PlayerMovement.OnStopMovement -= RayCastDown;
+            PlayerMovement.OnStopMovement -= RayCastEnabled;
+            LogController.OnExit -= RayCastDown;
+        }
     }
 }

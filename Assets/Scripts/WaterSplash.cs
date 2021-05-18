@@ -1,3 +1,4 @@
+using System;
 using Player;
 using UnityEngine;
 
@@ -17,5 +18,10 @@ public class WaterSplash : MonoBehaviour
         _audioManager.Play("Fall in water");
         transform.position = position;
         _particleSystem.Play();
+    }
+
+    private void OnDestroy()
+    {
+        PlayerGravity.OnFall -= PlayWaterSplash;
     }
 }

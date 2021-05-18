@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Player;
@@ -101,6 +102,11 @@ namespace Level
                 Destroy(_levelData.terrains[0]);
                 _levelData.terrains.RemoveAt(0);
             }
+        }
+
+        private void OnDestroy()
+        {
+            PlayerMovement.OnForward -= ControlTerrain;
         }
     }
 }

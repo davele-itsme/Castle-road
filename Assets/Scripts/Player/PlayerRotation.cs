@@ -44,10 +44,10 @@ namespace Player
             playerTransform.rotation = Quaternion.Euler(_directionVector);
         }
 
-        // private void OnDestroy()
-        // {
-        //     PlayerInput.HorizontalInput -= RotateHorizontally;
-        //     PlayerInput.VerticalInput -= RotateVertically;
-        // }
+        private void OnDestroy()
+        {
+            PlayerInput.HorizontalInput -= RotateHorizontally;
+            PlayerInput.VerticalInput -= RotateVertically;
+        }
     }
 }
