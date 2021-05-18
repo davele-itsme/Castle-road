@@ -15,7 +15,7 @@ public class BoximonController : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
     private AudioManager _audioManager;
 
-    private void Start()
+    private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
