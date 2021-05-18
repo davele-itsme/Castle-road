@@ -12,6 +12,9 @@ namespace Player
         
         public delegate void CanInput();
         public static event CanInput CancelInput;
+        
+        public delegate void JumpInput();
+        public static event JumpInput JumpInputReceived;
 
         private void Update()
         {
@@ -21,10 +24,14 @@ namespace Player
             {
                 CancelInput();
             }
-            
+
+            if (Input.GetButtonDown("Jump") && JumpInputReceived != null)
+            {
+                JumpInputReceived();
+            }
         }
 
-        private void GetAxisRaw()
+        private static void GetAxisRaw()
         {
             var horValue = Input.GetAxisRaw("Horizontal");
             var verValue = Input.GetAxisRaw("Vertical");

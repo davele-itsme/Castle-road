@@ -19,6 +19,7 @@ namespace Player
         private Animator _anim;
         private AudioManager _audioManager;
         private static readonly int Move = Animator.StringToHash("Move");
+        private static readonly int Jump = Animator.StringToHash("Jump");
 
         private void Start()
         {
@@ -37,7 +38,7 @@ namespace Player
                 isMoving = true; 
                 _anim.SetTrigger(Move);
                 _audioManager.Play("Move");
-                StartCoroutine(MovePlayer());
+                StartCoroutine(MovePlayer(1f, movingTime));
                 if (verValue == 1f && OnForward != null)
                 {
                     OnForward();
@@ -54,25 +55,38 @@ namespace Player
                 isMoving = true;
                 _anim.SetTrigger(Move);
                 _audioManager.Play("Move");
-                StartCoroutine(MovePlayer());
+                StartCoroutine(MovePlayer(1f, movingTime));
+            }
+        }
+        
+        public void JumpForward(Vector3 forwardVector, float mTime)
+        {
+            if (!isMoving)
+            {
+                _startPos = transform.position;
+                _targetPos = _startPos + forwardVector;
+                isMoving = true;
+                _anim.SetTrigger(Jump);
+                _audioManager.Play("Move");
+                StartCoroutine(MovePlayer(2f, mTime));
             }
         }
     
-        private IEnumerator MovePlayer()
+        private IEnumerator MovePlayer(float distance, float mTime)
         {
             var tInterpolate = 0f;
-            do
+            while (Vector3.Distance(_startPos, transform.position) < distance)
             {
-                tInterpolate += Time.deltaTime / movingTime;
+                tInterpolate += Time.deltaTime / mTime;
                 transform.position = Vector3.Lerp(_startPos, _targetPos, tInterpolate);
                 yield return null;
-            } while (Vector3.Distance(_startPos, transform.position) < 1f);
+            }
             transform.position = _targetPos;
             yield return new WaitForSeconds(timeToMove);
             isMoving = false;
             if (OnStopMovement != null)
             {
-                //needs to be called after isMoving otherwise won't fall to water
+                //needs to be called after isMoving otherwise won't fall to water\
                 OnStopMovement();
             }
         }

@@ -22,21 +22,21 @@ public class MobController : MonoBehaviour
 
     private IEnumerator GoRight()
     {
-        do
+        while (transform.position.x <= 10)
         {
             transform.position += Vector3.right * (Time.deltaTime * _speed);
             yield return null;
-        } while (transform.position.x <= 10);
+        }
         Destroy(gameObject);
     }
 
     private IEnumerator GoLeft()
     {
-        do
+        while (transform.position.x >= -10)
         {
             transform.position += Vector3.left * (Time.deltaTime * _speed);
             yield return null;
-        } while (transform.position.x >= -10);
+        }
         Destroy(gameObject);
     }
 

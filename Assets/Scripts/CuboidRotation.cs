@@ -19,16 +19,16 @@ public class CuboidRotation : MonoBehaviour
 
     private IEnumerator Rotate()
     {
-        do
+        while (!_pause)
         {
             transform.Rotate(rotationAngle * (rotationSpeed * Time.deltaTime));
             yield return null;
-        } while (!_pause);
+        }
     }
     
     private IEnumerator Float()
     {
-        do
+        while (!_pause)
         {
             _floatTimer += Time.deltaTime;
             var moveDir = new Vector3(0.0f, 0.0f, floatSpeed);
@@ -48,7 +48,7 @@ public class CuboidRotation : MonoBehaviour
                     break;
             }
             yield return null;
-        } while (!_pause);
+        }
     }
 
     private void PauseAnimation()

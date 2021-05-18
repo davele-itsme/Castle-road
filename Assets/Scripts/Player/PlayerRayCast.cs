@@ -13,7 +13,7 @@ namespace Player
         public delegate void ObjectBelow(RaycastHit hitInfo);
         public static event ObjectBelow OnObjectBelowFound;
 
-        private bool _rayCastDone;
+        private bool _canRayCast = true;
         private RaycastHit _hitInfo;
         private void Start()
         {
@@ -26,10 +26,10 @@ namespace Player
 
         private void HorizontalRayCast(float horValue)
         {
-            if (!_rayCastDone)
+            if (_canRayCast)
             {
                 var position = transform.position;
-                _rayCastDone = true;
+                _canRayCast = false;
                 var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(horValue, 0, 0));
                 if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnHorizontalMove != null)
                 {
@@ -37,17 +37,17 @@ namespace Player
                 }
                 else
                 {
-                    _rayCastDone = false;
+                    _canRayCast = true;
                 }
             }
         }
 
         private void VerticalRayCast(float verValue)
         {
-            if (!_rayCastDone)
+            if (_canRayCast)
             {
                 var position = transform.position;
-                _rayCastDone = true;
+                _canRayCast = false;
                 var ray = new Ray(new Vector3(position.x, 2, position.z), new Vector3(0, 0, verValue));
                 if (!Physics.Raycast(ray, out _hitInfo, 1f) && OnVerticalMove != null)
                 {
@@ -55,7 +55,7 @@ namespace Player
                 }
                 else
                 {
-                    _rayCastDone = false;
+                    _canRayCast = true;
                 }
             }
         }
@@ -69,9 +69,22 @@ namespace Player
             }
         }
 
+        public bool ObjectInFront(Vector3 forwardVector)
+        {
+            if (_canRayCast)
+            {
+                _canRayCast = false;
+                var position = transform.position;
+                var ray = new Ray(new Vector3(position.x, 2, position.z), forwardVector);
+                if (!Physics.Raycast(ray, out _hitInfo, 2f)) return false;
+                _canRayCast = true;
+            }
+            return true;
+        }
+
         private void RayCastEnabled()
         {
-            _rayCastDone = false;
+            _canRayCast = true;
         }
 
         private void OnDestroy()
