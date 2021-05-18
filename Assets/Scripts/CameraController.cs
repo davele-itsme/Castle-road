@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using Player;
 using UnityEngine;
@@ -28,5 +29,10 @@ public class CameraController : MonoBehaviour
             transform.position = _shouldFollow;
             yield return null;
         } while (_follow);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerDeath.PlayerDied -= StopFollowing;
     }
 }
