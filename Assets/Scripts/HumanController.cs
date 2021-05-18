@@ -2,13 +2,13 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MobController : MonoBehaviour
+public class HumanController : MonoBehaviour
 {
     private float _speed;
 
     private void Start()
     {
-        _speed = Random.Range(0.3f, 0.6f);
+        _speed = Random.Range(0.6f, 1f);
 
         if (transform.position.x > 0 && transform.position.x < 14)
         {
