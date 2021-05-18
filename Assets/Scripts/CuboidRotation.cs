@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class CuboidRotation : MonoBehaviour
@@ -6,35 +8,64 @@ public class CuboidRotation : MonoBehaviour
     [SerializeField] private float rotationSpeed, floatSpeed, floatRate;
     private bool _goingUp;
     private float _floatTimer;
-    private void Update()
+    private bool _pause;
+    
+    private void Start()
     {
-        Rotate();
-        Float();
+        ResumeAnimation();
+        PauseMenu.OnPaused += PauseAnimation;
+        PauseMenu.OnResumed += ResumeAnimation;
     }
 
-    private void Rotate()
+    private IEnumerator Rotate()
     {
-        transform.Rotate(rotationAngle * (rotationSpeed * Time.deltaTime));
+        do
+        {
+            transform.Rotate(rotationAngle * (rotationSpeed * Time.deltaTime));
+            yield return null;
+        } while (!_pause);
     }
     
-    private void Float()
+    private IEnumerator Float()
     {
-        _floatTimer += Time.deltaTime;
-        var moveDir = new Vector3(0.0f, 0.0f, floatSpeed);
-        transform.Translate(moveDir);
-
-        switch (_goingUp)
+        do
         {
-            case true when _floatTimer >= floatRate:
-                _goingUp = false;
-                _floatTimer = 0;
-                floatSpeed = -floatSpeed;
-                break;
-            case false when _floatTimer >= floatRate:
-                _goingUp = true;
-                _floatTimer = 0;
-                floatSpeed = +floatSpeed;
-                break;
-        }
+            _floatTimer += Time.deltaTime;
+            var moveDir = new Vector3(0.0f, 0.0f, floatSpeed);
+            transform.Translate(moveDir);
+
+            switch (_goingUp)
+            {
+                case true when _floatTimer >= floatRate:
+                    _goingUp = false;
+                    _floatTimer = 0;
+                    floatSpeed = -floatSpeed;
+                    break;
+                case false when _floatTimer >= floatRate:
+                    _goingUp = true;
+                    _floatTimer = 0;
+                    floatSpeed = +floatSpeed;
+                    break;
+            }
+            yield return null;
+        } while (!_pause);
+    }
+
+    private void PauseAnimation()
+    {
+        _pause = true;
+    }
+    
+    private void ResumeAnimation()
+    {
+        _pause = false;
+        StartCoroutine(Rotate());
+        StartCoroutine(Float());
+    }
+
+    private void OnDestroy()
+    {
+        PauseMenu.OnPaused -= PauseAnimation;
+        PauseMenu.OnResumed -= ResumeAnimation;
     }
 }

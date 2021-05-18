@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public delegate void PauseAction();
+    public static event PauseAction OnPaused;
+    public delegate void ResumeAction();
+    public static event ResumeAction OnResumed;
+    
     public bool gameIsPaused;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject pauseButton;
@@ -37,6 +42,10 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = false;
         pauseButton.SetActive(true);
         scoreText.SetActive(true);
+        if (OnResumed != null)
+        {
+            OnResumed();
+        }
     }
 
     public void OnPause()
@@ -46,6 +55,10 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
         pauseButton.SetActive(false);
         scoreText.SetActive(false);
+        if (OnPaused != null)
+        {
+            OnPaused();
+        }
     }
 
     public void OnHome()
