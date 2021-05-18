@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Player
 {
@@ -24,7 +26,7 @@ namespace Player
         {
             if (_canJump)
             {
-                var forwardVector = playerModelTransform.TransformDirection (new Vector3(0, 0, -2));
+                var forwardVector = playerModelTransform.TransformDirection (Vector3.back * 2f);
                 if (!_playerRayCast.ObjectInFront(forwardVector))
                 {
                     JumpForward(forwardVector);

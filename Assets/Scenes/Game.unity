@@ -9629,7 +9629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3265561213547706073, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
       propertyPath: movingTime
-      value: 0.25
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3265561213547706073, guid: 18062969c93989e4a817bef939f66a9f, type: 3}
       propertyPath: terrainGenerator

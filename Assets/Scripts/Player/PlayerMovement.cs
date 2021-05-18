@@ -75,13 +75,16 @@ namespace Player
         private IEnumerator MovePlayer(float distance, float mTime)
         {
             var tInterpolate = 0f;
-            while (Vector3.Distance(_startPos, transform.position) < distance)
+            var actualDistance = 0f;
+            do
             {
                 tInterpolate += Time.deltaTime / mTime;
                 transform.position = Vector3.Lerp(_startPos, _targetPos, tInterpolate);
+                actualDistance = Vector3.Distance(_targetPos, transform.position);
                 yield return null;
-            }
-            transform.position = _targetPos;
+            } while (actualDistance <= distance && actualDistance > 0);
+
+                transform.position = _targetPos;
             yield return new WaitForSeconds(timeToMove);
             isMoving = false;
             if (OnStopMovement != null)
