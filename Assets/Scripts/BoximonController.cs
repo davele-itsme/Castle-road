@@ -47,7 +47,7 @@ public class BoximonController : MonoBehaviour
         {
             _agent.SetDestination(_player.transform.position);
             CheckForDistance();
-            yield return null;
+            yield return new WaitForSeconds(0.5f);
         } while (_followPlayer);
     }
     

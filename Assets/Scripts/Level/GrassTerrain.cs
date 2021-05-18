@@ -75,7 +75,7 @@ namespace Level
 
         private void InstantiateObject(GameObject gameObj, int x, float y, Quaternion rotation)
         {
-            var newObject =  Instantiate(gameObj, new Vector3(x, y, _newTerrain.transform.position.z), rotation);
+            var newObject = Instantiate(gameObj, new Vector3(x, y, _newTerrain.transform.position.z), rotation);
             newObject.transform.SetParent(_newTerrain.transform);
         }
     }
