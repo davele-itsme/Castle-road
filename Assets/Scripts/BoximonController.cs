@@ -56,7 +56,7 @@ public class BoximonController : MonoBehaviour
         {
             StopCoroutine(_followCoroutine);
             _animator.SetTrigger(Attack); 
-            _audioManager.Play("Boximon punch"); 
+            _audioManager.Play("Punch"); 
             StartCoroutine(AttackPlayer(0.2f));
         }
     }
