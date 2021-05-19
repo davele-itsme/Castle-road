@@ -8636,7 +8636,7 @@ MonoBehaviour:
     Pitch: 1
     Loop: 0
     Source: {fileID: 0}
-  - Clip: {fileID: 8300000, guid: 56b4fb9e594eda44b9306919b89b9289, type: 3}
+  - Clip: {fileID: 8300000, guid: ad13868ff92630c4883da5915eed6410, type: 3}
     Name: Punch
     Volume: 0.15
     Pitch: 1.5
