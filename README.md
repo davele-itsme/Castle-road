@@ -19,6 +19,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#assets">Assets</a></li>
       </ul>
     </li>
     <li>
@@ -48,6 +49,16 @@ Unity game inspired by <strong>Crossy road</strong> game on mobile platforms. Ca
 * [Mixamo](https://www.mixamo.com/#/) - library with full-body character animations and autorigging
 * [Unity Asset Store](https://assetstore.unity.com/) - store with Unity Assets
 * [Sketchfab](https://sketchfab.com/feed) - store with models
+
+### Assets
+
+* [GUI Buttons](https://assetstore.unity.com/packages/2d/gui/icons/game-gui-buttons-96277) - UI
+* [Gems](https://assetstore.unity.com/packages/3d/props/simple-gems-ultimate-animated-customizable-pack-73764) - cuboid
+* [Boximon Cyclope](https://assetstore.unity.com/packages/3d/characters/meshtint-free-boximon-cyclopes-mega-toon-series-154436)
+* [Boximon Fiery](https://assetstore.unity.com/packages/3d/characters/meshtint-free-boximon-fiery-mega-toon-series-153958)
+* [Low poly tree](https://assetstore.unity.com/packages/3d/low-poly-tree-62946)
+* [Voxel animals pack](https://assetstore.unity.com/packages/3d/characters/animals/voxel-animals-pack-133366) - chicken player model
+* [Meshtint city pack](https://assetstore.unity.com/packages/3d/environments/urban/meshtint-free-city-lite-pack-mega-toon-series-152378) - for water
 
 <!-- GETTING STARTED -->
 ## Getting Started
