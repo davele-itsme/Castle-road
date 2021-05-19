@@ -24,7 +24,6 @@ public class Abilities : MonoBehaviour
             jumpAbility.fillAmount -= 1 / cooldown * Time.deltaTime;
             yield return null;
         }
-
         jumpAbility.fillAmount = 1;
     }
 
