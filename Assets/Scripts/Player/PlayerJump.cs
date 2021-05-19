@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Numerics;
+﻿using System.Collections;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -8,9 +6,13 @@ namespace Player
 {
     public class PlayerJump : MonoBehaviour
     {
+        public delegate void JumpAction(float cooldown);
+        public static event JumpAction OnJumped;
+        
         [SerializeField] private Transform playerModelTransform;
-        [SerializeField] private int timer;
+        [SerializeField] private int jumpCooldown;
         [SerializeField] private float movingTime;
+        
         private bool _canJump = true;
         private PlayerRayCast _playerRayCast;
         private PlayerMovement _playerMovement;
@@ -26,19 +28,23 @@ namespace Player
         {
             if (_canJump)
             {
+                if (OnJumped != null)
+                {
+                    OnJumped(jumpCooldown);
+                }
+                _canJump = false;
                 var forwardVector = playerModelTransform.TransformDirection (Vector3.back * 2f);
                 if (!_playerRayCast.ObjectInFront(forwardVector))
                 {
                     JumpForward(forwardVector);
                 }
                 StartCoroutine(Timer());
-                _canJump = false;
             }
         }
 
         private IEnumerator Timer()
         {
-            yield return new WaitForSeconds(timer);
+            yield return new WaitForSeconds(jumpCooldown);
             _canJump = true;
         }
 
