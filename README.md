@@ -6,7 +6,7 @@
   <p align="center">
     Unity game built for Game Development project assignment 
     <br />
-    <a href="https://youtu.be/L8I28eNKKAY"><strong>Explore the youtbe video demonstration »</strong></a>
+    <a href="https://youtu.be/8pjOjUK-Zqw"><strong>Explore the youtbe video demonstration »</strong></a>
     <br />
   </p>
 </p>
