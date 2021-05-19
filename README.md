@@ -49,6 +49,7 @@ Unity game inspired by <strong>Crossy road</strong> game on mobile platforms. Ca
 * [Mixamo](https://www.mixamo.com/#/) - library with full-body character animations and autorigging
 * [Unity Asset Store](https://assetstore.unity.com/) - store with Unity Assets
 * [Sketchfab](https://sketchfab.com/feed) - store with models
+* [Zapslat](https://www.zapsplat.com/) - SFX
 
 ### Assets
 
@@ -59,6 +60,8 @@ Unity game inspired by <strong>Crossy road</strong> game on mobile platforms. Ca
 * [Low poly tree](https://assetstore.unity.com/packages/3d/low-poly-tree-62946)
 * [Voxel animals pack](https://assetstore.unity.com/packages/3d/characters/animals/voxel-animals-pack-133366) - chicken player model
 * [Meshtint city pack](https://assetstore.unity.com/packages/3d/environments/urban/meshtint-free-city-lite-pack-mega-toon-series-152378) - for water
+* [Monk char](https://sketchfab.com/3d-models/monk-character-8cacbd85a5b84f59a8c9000d7a6dcca2)
+* [Peasant char](https://sketchfab.com/3d-models/peasant-character-df91025680a5433eb5917a466211dba1)
 
 <!-- GETTING STARTED -->
 ## Getting Started
