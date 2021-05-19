@@ -35,7 +35,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Unity game inspired by <strong>Crossy road</strong> game on mobile platforms. Castle road combines <strong>Arcade runner</strong> genre with <strong>RPG</strong> elements.  
+Unity game inspired by <strong>Crossy road</strong> game on mobile platforms. Castle road combines <strong>Arcade runner</strong> genre with <strong>RPG</strong> elements. 
+The game for some reason lags in WebGL, so I recommend building the standalone app and run the game there. Tested building "PC, Mac & Linux Standalone" and the game runs smooth.
 
 <strong>Features:</strong>
 * Spawning of enemies attacking you
