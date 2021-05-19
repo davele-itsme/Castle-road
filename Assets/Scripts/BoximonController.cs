@@ -69,7 +69,6 @@ public class BoximonController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _audioManager.Stop("Boximon sleep");
         PlayerMovement.OnStopMovement -= CheckForDistance;
     }
 }

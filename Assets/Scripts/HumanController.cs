@@ -5,11 +5,14 @@ using Random = UnityEngine.Random;
 public class HumanController : MonoBehaviour
 {
     private float _speed;
+    private Animator _animator;
+    private static readonly int Attack = Animator.StringToHash("Attack");
 
     private void Start()
     {
         _speed = Random.Range(0.6f, 1f);
-
+        _animator = GetComponent<Animator>();
+        
         if (transform.position.x > 0 && transform.position.x < 14)
         {
             StartCoroutine(GoLeft());
@@ -44,7 +47,14 @@ public class HumanController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
+            _animator.SetTrigger(Attack);
+            StartCoroutine(AttackPlayer(0.2f, other.gameObject));
         }
+    }
+    
+    private IEnumerator AttackPlayer(float delayTime, GameObject player)
+    {
+        yield return new WaitForSeconds(delayTime);
+        Destroy(player);
     }
 }

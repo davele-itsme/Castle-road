@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 431950143454346472}
   - component: {fileID: -4636968721567124959}
   - component: {fileID: -4710053385493573536}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Monk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3500034134593913977}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.005
   m_Height: 0.016
