@@ -19,14 +19,14 @@ namespace Level
         private LevelData _levelData;
         private Vector3 _currentPosition;
         private int _lastTerrainType;
-        private int _terrainCounter = 8;
+        private int _terrainCounter = 11;
         private ITerrain[] _terrainTypes;
         private IEnumerable<int> _possibleTerrainTypes;
 
         private void Start()
         {
             _levelData = LevelData.Instance;
-            _currentPosition = new Vector3(0, 1, -7);
+            _currentPosition = new Vector3(0, 1, -10);
             _terrainTypes = gameObject.GetComponents<ITerrain>();
             _possibleTerrainTypes = Enumerable.Range(0, _terrainTypes.Length);
             PlayerMovement.OnForward += ControlTerrain;

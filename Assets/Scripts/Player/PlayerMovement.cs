@@ -9,9 +9,12 @@ namespace Player
         public static event StopAction OnStopMovement;
         public delegate void ForwardAction();
         public static event ForwardAction OnForward;
+        public delegate void BackwardAction();
+        public static event BackwardAction OnBackward;
         
         public bool IsOnWoodLog { get; set; }
         public bool isMoving;
+        public bool canMoveBackward;
     
         [SerializeField] private float movingTime, timeToMove;
 
@@ -27,21 +30,35 @@ namespace Player
             PlayerRayCast.OnVerticalMove += VerticallyMove;
             _anim = GetComponent<Animator>();
             _audioManager = FindObjectOfType<AudioManager>();
+            canMoveBackward = true;
         }
 
         private void VerticallyMove(float verValue)
         {
             if (!isMoving)
             {
+                if (verValue < 0f && !canMoveBackward)
+                {
+                    if (OnStopMovement != null)
+                    {
+                        OnStopMovement();
+                    }
+                    return;
+                }
                 _startPos = transform.position;
                 _targetPos = _startPos + new Vector3(0, 0, verValue);
-                isMoving = true; 
+                isMoving = true;
+                canMoveBackward = true;
                 _anim.SetTrigger(Move);
                 _audioManager.Play("Move");
                 StartCoroutine(MovePlayer(1f, movingTime));
                 if (verValue == 1f && OnForward != null)
                 {
                     OnForward();
+                }
+                if (verValue == -1f && OnBackward != null)
+                {
+                    OnBackward();
                 }
             }
         }
@@ -83,8 +100,7 @@ namespace Player
                 actualDistance = Vector3.Distance(_targetPos, transform.position);
                 yield return null;
             } while (actualDistance <= distance && actualDistance > 0);
-
-                transform.position = _targetPos;
+            transform.position = _targetPos;
             yield return new WaitForSeconds(timeToMove);
             isMoving = false;
             if (OnStopMovement != null)

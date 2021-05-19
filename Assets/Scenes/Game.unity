@@ -8330,6 +8330,7 @@ GameObject:
   - component: {fileID: 1440353950}
   - component: {fileID: 1440353952}
   - component: {fileID: 1440353953}
+  - component: {fileID: 1440353949}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -8366,6 +8367,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440353949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440353946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8beda118a340faa4877f51b07b83e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1742425440}
+  levelBoundaryDistance: 9
 --- !u!114 &1440353950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9545,7 +9560,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1216
+  m_Name: pb_Mesh-365068
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
